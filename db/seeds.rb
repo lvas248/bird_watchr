@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-birds = ['Blue Jay', 'Wood Pecker', 'Rcok Pigeon', 'Cardinal', 'Bald Eagle']
+birds = ['Blue Jay', 'Wood Pecker', 'Rock Pigeon', 'Cardinal', 'Bald Eagle']
 
 desc = ['The blue jay is between 9 and 12 inches in length. It is bright blue on top and white to gray on its throat, chest and belly. It has a gray-blue crest on its head and black and white bars on its wings and tail. Its bill, legs and feet are black.',
         'The woodpecker has a tough, pointed beak which it uses to chip on bark, drum on trees, and find insects. The tip of their bill is chisel-shaped and sharp from all the pecking on wood. The tongue of a woodpecker can span up to four inches long. On its tongue is a glue-like substance which helps in extracting insects.',
@@ -32,7 +32,25 @@ while i < birds.length do
 end
 
 User.create(
-    username: 'Luis8',
+    username: 'Luis',
+    password: '123',
+    password_confirmation: '123'
+)
+
+User.create(
+    username: 'Viv',
+    password: '123',
+    password_confirmation: '123'
+)
+
+User.create(
+    username: 'Sasha',
+    password: '123',
+    password_confirmation: '123'
+)
+
+User.create(
+    username: 'Chimi',
     password: '123',
     password_confirmation: '123'
 )
@@ -42,4 +60,22 @@ Post.create(
     bird: Bird.first,
     image_url: 'https://images.unsplash.com/photo-1636246441747-7d7f83f4629c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Qmx1ZSUyMEpheXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
     caption: "Cool Bird"
+)
+Post.create(
+    user: User.second,
+    bird: Bird.second,
+    image_url: 'https://images.unsplash.com/photo-1655874184076-c75fce971b46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d29vZCUyMHBlY2tlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+    caption: "Saw this guy while walking my dog in Ridgewood"
+)
+Post.create(
+    user: User.third,
+    bird: Bird.third,
+    image_url: 'https://images.unsplash.com/photo-1617946547180-0f9c42b18313?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cm9jayUyMHBpZ2VvbnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+    caption: "Woof, Woof, Woof 🐶"
+)
+Post.create(
+    user: User.last,
+    bird: Bird.last,
+    image_url: 'https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJhbGQlMjBlYWdsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
+    caption: "Yummmmmm 😈"
 )
