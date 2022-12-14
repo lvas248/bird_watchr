@@ -1,6 +1,18 @@
-import { Nav, NavItem, NavLink } from 'reactstrap'
+import { Nav, NavItem, NavLink, Button } from 'reactstrap'
 
-function Navbar({user}){
+
+
+function Navbar({user, removeUser}){
+
+    function logout(){
+        fetch('/logout',{
+            method: 'DELETE'
+        })
+        // .then(res => res.json())
+        // .then( data => console.log(data))
+        removeUser()
+    }
+
     return(
         <div id='nav_container'>
             <div>
@@ -27,9 +39,7 @@ function Navbar({user}){
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/login">
-                        Login
-                    </NavLink>
+                    { user.id ? <Button onClick={logout}>Logout</Button> : <NavLink href="/login">Login</NavLink>}
                 </NavItem>
             
             </Nav>            

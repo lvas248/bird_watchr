@@ -5,9 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Bird.all.destroy_all
-Post.all.destroy_all
-User.all.destroy_all
+
 birds = ['Blue Jay', 'Wood Pecker', 'Rock Pigeon', 'Cardinal', 'Bald Eagle']
 
 desc = ['The blue jay is between 9 and 12 inches in length. It is bright blue on top and white to gray on its throat, chest and belly. It has a gray-blue crest on its head and black and white bars on its wings and tail. Its bill, legs and feet are black.',

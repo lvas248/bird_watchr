@@ -20,13 +20,15 @@ function App() {
   function updateUser(userObj){
     setUser(userObj)
   }
-
+  function removeUser(){
+    setUser({})
+  }
 
 
   return (
     <div className="App">
       
-      <Navbar user={user}/>
+      <Navbar user={user} removeUser={removeUser}/>
 
       <div id='switch_container'>
 

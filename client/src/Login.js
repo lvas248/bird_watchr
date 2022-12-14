@@ -31,7 +31,6 @@ function Login({updateUser}){
                 res.json().then(errorData => setErrors(errorData.error))
             }
         })
-        .then(data => updateUser(data))
         setLoginObj(obj)
     }
 
