@@ -43,7 +43,6 @@ function Login(){
 
             <div id='toSignup'>
                 <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>
-                
             </div>
 
         </div>

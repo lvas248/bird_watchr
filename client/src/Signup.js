@@ -32,7 +32,7 @@ function Signup(){
     return (
         <div id='form'>
 
-            <h2>Signup</h2>
+            <h1>Signup</h1>
             <Form onSubmit={submitSignup}>
                 <Label>Username</Label>
                 <Input value={signupObj.username} onChange={e=> updateSignupObj('username', e.target.value)}/>

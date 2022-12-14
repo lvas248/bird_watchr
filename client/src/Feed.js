@@ -5,6 +5,7 @@ function Feed({posts}){
     const renderCards = posts.map( post =>{
         return <Post key={post.id} post={post}/>
         })
+        
     return (
         <div id='feed'>
             {renderCards}

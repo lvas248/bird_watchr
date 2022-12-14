@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Login from './Login';
 import Signup from './Signup';
-
+import Navbar from './Navbar';
 import Feed from './Feed';
 
 function App() {
@@ -21,22 +21,28 @@ function App() {
   return (
     <div className="App">
       
+      <Navbar />
 
-      <Switch>
+      <div id='switch_container'>
 
-        <Route exact path='/'>
-          <Login />          
-        </Route>
+        <Switch>
 
-        <Route exact path='/signup'>
-          <Signup />          
-        </Route>
+          <Route exact path='/'>
+            <Feed posts={posts} />          
+          </Route>
 
-        <Route exact path='/feed'>
-          <Feed posts={posts} />          
-        </Route>
+          <Route  path='/login'>
+            <Login />          
+          </Route>
 
-      </Switch>
+          <Route path='/signup'>
+            <Signup />          
+          </Route>
+
+
+        </Switch>
+      </div>
+
 
     </div>
   );
