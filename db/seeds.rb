@@ -21,11 +21,13 @@
 #             'https://images.unsplash.com/photo-1575350126138-9259890f965a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8QmFsZCUyMEVhZ2xlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60']
 
 
-# i = birds.length - 1
-# i.times do 
+# i = 0
+# while i < birds.length do
 #     Bird.create(
 #         name: birds[i],
 #         description: desc[i],
 #         image_url: images[i]
 #     )
+#     i+=1
 # end
+

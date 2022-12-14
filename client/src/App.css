@@ -43,14 +43,31 @@
 
 #form {
   margin: auto auto;
-
 }
-
 
 #form > * {
   margin: 10%;
 }
 
-/* #toSignup {
-  margin-top: 10%;
-} */
+#card {
+  text-align: left;
+}
+
+#card image{
+  border-radius: 10px;
+}
+
+.card {
+  width: 65%;
+  margin: auto auto;
+}
+
+.card-text {
+  margin-top: 15px;
+}
+
+#feed{
+  display: grid;
+  grid-template-columns: auto;
+  overflow: auto;
+}
