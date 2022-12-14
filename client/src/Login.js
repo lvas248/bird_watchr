@@ -28,10 +28,9 @@ function Login(){
         setLoginObj(obj)
     }
 
-
-  
     return (
         <div id='form'>
+            <h1>Login</h1>
             <Form onSubmit={submitLogin}>
                 <Label>Username</Label>
                 <Input value={loginObj.username} onChange={e=> updateLoginObj('username', e.target.value)}/>
@@ -39,7 +38,7 @@ function Login(){
                 <Label>Password</Label>
                 <Input value={loginObj.password} onChange={e=> updateLoginObj('password', e.target.value)}/>
 
-               <Button color='primary'>Start</Button>
+               <Button color='primary'>Login</Button>
             </Form>
 
             <div id='toSignup'>
