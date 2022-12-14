@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
  
+  resources :posts
+  resources :birds
   post '/signup', to: 'users#create'
 
   get '/me', to: 'users#show'
