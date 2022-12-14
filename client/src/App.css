@@ -49,12 +49,12 @@
 
 #card {
   text-align: left;
-  width: 70%;
+  width: 100%;
   margin: auto;
 }
 
 #card image{
-  border-radius: 10px;
+  border-radius: 20px;
 
 }
 
@@ -84,8 +84,9 @@
 }
 
 @media(max-width: 960px){
-  .card{
-    width: 100%
+ 
+  #card{
+    
   }
 
 }
