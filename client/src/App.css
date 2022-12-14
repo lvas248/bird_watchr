@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  height: 1080px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 
 .App-logo {
@@ -36,3 +40,17 @@
     transform: rotate(360deg);
   }
 }
+
+#form {
+  margin: auto auto;
+
+}
+
+
+#form > * {
+  margin: 10%;
+}
+
+/* #toSignup {
+  margin-top: 10%;
+} */
