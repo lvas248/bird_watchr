@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
 
-function Login(){
+function Login({updateUser}){
 
     const obj = { username: '', password: ''}
 
     const [ loginObj, setLoginObj ] = useState(obj)
+    const [ errors, setErrors ] = useState()
 
     function updateLoginObj(key, value){
         const copy = {...loginObj}
@@ -23,8 +24,14 @@ function Login(){
             },
             body: JSON.stringify(loginObj)
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => {
+            if(res.ok){
+                res.json().then(data => updateUser(data))
+            }else{
+                res.json().then(errorData => setErrors(errorData.error))
+            }
+        })
+        .then(data => updateUser(data))
         setLoginObj(obj)
     }
 
@@ -40,6 +47,8 @@ function Login(){
 
                <Button color='primary'>Login</Button>
             </Form>
+
+            {errors ? <p style={{ color: "red" }}>{errors}</p> : null}
 
             <div id='toSignup'>
                 <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>

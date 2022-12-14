@@ -1,7 +1,6 @@
 import { Nav, NavItem, NavLink } from 'reactstrap'
 
-function Navbar(){
-
+function Navbar({user}){
     return(
         <div id='nav_container'>
             <div>

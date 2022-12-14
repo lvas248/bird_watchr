@@ -8,6 +8,7 @@ import Feed from './Feed';
 
 function App() {
 
+  const [ user, setUser ] = useState({})
   const [ posts, setPosts ] = useState([])
 
   useEffect(()=>{
@@ -16,12 +17,16 @@ function App() {
     .then(data => setPosts(data))
   },[])
 
+  function updateUser(userObj){
+    setUser(userObj)
+  }
+
 
 
   return (
     <div className="App">
       
-      <Navbar />
+      <Navbar user={user}/>
 
       <div id='switch_container'>
 
@@ -32,11 +37,11 @@ function App() {
           </Route>
 
           <Route  path='/login'>
-            <Login />          
+            <Login updateUser={updateUser}/>          
           </Route>
 
           <Route path='/signup'>
-            <Signup />          
+            <Signup updateUser={updateUser}/>          
           </Route>
 
 

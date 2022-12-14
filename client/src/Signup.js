@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
 
 
-function Signup(){
+function Signup({updateUser}){
 
     const defaultObj = { username: '', password: '', password_confirmation: ''}
 
@@ -25,7 +25,7 @@ function Signup(){
             body: JSON.stringify(signupObj)
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => updateUser(data))
         setSignupObj(defaultObj)
     }
 
