@@ -63,6 +63,10 @@
   margin: auto auto;
 }
 
+.card.card-body{
+  width: 55%;
+}
+
 .card-text {
   margin-top: 15px;
 }
@@ -85,8 +89,8 @@
 
 @media(max-width: 960px){
  
-  #card{
-    
+  .card.card-body{
+    width: 90%;
   }
 
 }
