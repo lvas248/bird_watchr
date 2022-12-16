@@ -16,6 +16,11 @@ function App() {
     .then(res => res.json())
     .then(data => setPosts(data))
   },[])
+  useEffect(()=>{
+    fetch('/me')
+    .then(res => res.json())
+    .then(data => setUser(data))
+  },[])
 
   function updateUser(userObj){
     setUser(userObj)

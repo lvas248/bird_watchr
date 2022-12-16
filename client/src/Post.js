@@ -1,6 +1,9 @@
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
+import React, { useState } from 'react'
 
 function Post({post, user}){
+
+    const [ isUserPost, setIsUserPost ] = useState(post.user.id === user.id ? true : false)
 
     return (
         <div id='card'>
