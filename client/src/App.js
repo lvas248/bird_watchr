@@ -7,14 +7,19 @@ import Navbar from './Navbar';
 import Feed from './Feed';
 
 function App() {
-  console.log('App trigger')
   const [ user, setUser ] = useState({})
   const [ posts, setPosts ] = useState([])
+  const [ birds, setBirds ] = useState([])
 
   useEffect(()=>{
     fetch('/posts')
     .then(res => res.json())
     .then(data => setPosts(data))
+  },[])
+  useEffect(()=>{
+    fetch('/birds')
+    .then(res => res.json())
+    .then(data => setBirds(data))
   },[])
   useEffect(()=>{
     fetch('/me')
@@ -29,6 +34,14 @@ function App() {
     setUser({})
   }
 
+  function updateBird(birdObj){
+    const updatedList = birds.map( bird =>{
+      if(birdObj.id === bird.id) return birdObj
+      else return bird
+    })
+    setBirds(updatedList)
+  }
+
 
   return (
     <div className="App">
@@ -40,7 +53,7 @@ function App() {
         <Switch>
 
           <Route path='/feed'>
-            <Feed posts={posts} user={user} />          
+            <Feed posts={posts} user={user} birds={birds} updateBird={updateBird} />          
           </Route>
 
           <Route  path='/login'>

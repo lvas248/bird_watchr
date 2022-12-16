@@ -1,28 +1,43 @@
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 import React, { useState } from 'react'
+import EditForm from './EditForm'
 
-function Post({post, user}){
+function Post({post, user, birds, updateBird}){
 
-    const [ isUserPost, setIsUserPost ] = useState(post.user.id === user.id ? true : false)
+    const [ editClick, setEditClick ] = useState(false)
+
+    const isUserPost = post.user.id === user.id
+
+    function clickEdit(){
+        setEditClick(!editClick)
+    }
+
+
 
     return (
         <div id='card'>
-            <Card 
-                body>
-                {/* // // style={{width: '10rems'}}> */}
+            <Card body>
                 <CardImg alt='bird' src={post.image_url}></CardImg>
-                <CardBody>
-                    <CardTitle tag='h5'>🦅 {post.bird.name}</CardTitle>
-                    <CardSubtitle tag='h6'>👤 {post.user.username}</CardSubtitle>
-                    <CardText>{post.caption}</CardText>
-                </CardBody>
-                <CardBody>
-                    <Button color='primary'>Like</Button>
-                    <Button color='secondary'>Comment</Button>
-                </CardBody>
+
+                {editClick ? <EditForm post={post} birds={birds} clickEdit={clickEdit} updateBird={updateBird}/> :(
+                    <>                    
+                        <CardBody>
+                            <CardTitle tag='h5'>🦅 {post.bird.name}</CardTitle>
+                            <CardSubtitle tag='h6'>👤 {post.user.username}</CardSubtitle>
+                            <CardText>{post.caption}</CardText>
+                        </CardBody>
+                        
+                        <CardBody>
+                            <Button color='primary'>Like</Button> 
+                            <Button color='secondary'>Comment</Button> 
+                            {isUserPost ? <Button onClick={clickEdit}>Edit</Button> : null }
+                        </CardBody>
+                    </>
+
+                )}
+            
             </Card>            
         </div>
-
     )
 }
 
