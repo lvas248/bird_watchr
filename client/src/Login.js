@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
 
 function Login({updateUser}){
@@ -8,6 +8,8 @@ function Login({updateUser}){
 
     const [ loginObj, setLoginObj ] = useState(obj)
     const [ errors, setErrors ] = useState()
+
+    // const history = useHistory()
 
     function updateLoginObj(key, value){
         const copy = {...loginObj}
@@ -31,7 +33,8 @@ function Login({updateUser}){
                 res.json().then(errorData => setErrors(errorData.error))
             }
         })
-        setLoginObj(obj)
+        // setLoginObj(obj)
+        // history.push('/')
     }
 
     return (

@@ -7,7 +7,7 @@ import Navbar from './Navbar';
 import Feed from './Feed';
 
 function App() {
-
+  console.log('App trigger')
   const [ user, setUser ] = useState({})
   const [ posts, setPosts ] = useState([])
 
@@ -34,8 +34,8 @@ function App() {
 
         <Switch>
 
-          <Route exact path='/'>
-            <Feed posts={posts} />          
+          <Route path='/feed'>
+            <Feed posts={posts} user={user} />          
           </Route>
 
           <Route  path='/login'>

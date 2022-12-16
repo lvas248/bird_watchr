@@ -1,4 +1,5 @@
-import { Nav, NavItem, NavLink, Button } from 'reactstrap'
+import { Nav, NavItem, Button } from 'reactstrap'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -8,14 +9,12 @@ function Navbar({user, removeUser}){
         fetch('/logout',{
             method: 'DELETE'
         })
-        // .then(res => res.json())
-        // .then( data => console.log(data))
         removeUser()
     }
 
     return(
         <div id='nav_container'>
-            <div>
+            <div id='title'>
                 <h1>Bird Watchr</h1>    
             </div>
 
@@ -24,22 +23,22 @@ function Navbar({user, removeUser}){
                 pills
                 >
                 <NavItem>
-                    <NavLink active href="/">
-                        Feed
+                    <NavLink to="/feed" className='navBtn'> 
+                        <strong>Feed</strong>
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="/post" >
-                        Post Bird
+                    <NavLink to="/post"  className='navBtn'>
+                        <strong>Post Bird</strong>
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink href="#">
-                        My Stuff
+                    <NavLink to="mystuff"  className='navBtn'>
+                       <strong>My Stuff</strong>
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    { user.id ? <Button onClick={logout}>Logout</Button> : <NavLink href="/login">Login</NavLink>}
+                    { user.id ? <Button onClick={()=>logout()}>Logout</Button> : <NavLink className='navBtn' to="/login"><strong>Login</strong></NavLink>}
                 </NavItem>
             
             </Nav>            

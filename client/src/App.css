@@ -78,7 +78,11 @@
 }
 
 #nav_container{
-  width: 100%;
+  margin: 5%;
+}
+
+#title {
+  margin: 20px;
 }
 
 #switch_container{
@@ -94,3 +98,27 @@
   }
 
 }
+.navBtn {
+  text-decoration: none;
+  padding: 20px;
+  border-radius: 25px;
+
+}
+
+a:visited, a.hover, a.link{
+  text-decoration: none;
+  color: green;
+}
+a:active{
+  background-color: green;
+}
+a.active {
+  color: green;
+  border: 2px solid green;
+}
+
+a:link{
+  text-decoration: none;
+  color: green;
+}
+

@@ -1,6 +1,6 @@
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 
-function Post({post}){
+function Post({post, user}){
 
     return (
         <div id='card'>
