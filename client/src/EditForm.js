@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { CardBody, Label, Input, Button } from 'reactstrap'
 
-function EditForm({post, birds, clickEdit, updatePost}){
+function EditForm({post, birds, clickEdit, updatePost, deletePost}){
 
     const [ postObj, setPostObj ] = useState({
         bird_id: post.bird.id,
@@ -20,6 +20,7 @@ function EditForm({post, birds, clickEdit, updatePost}){
         setPostObj(copy)
         console.log(copy)
     }
+
     function submitEdit(e){
         e.preventDefault()
         fetch('/posts', {
@@ -34,6 +35,14 @@ function EditForm({post, birds, clickEdit, updatePost}){
         clickEdit()
     }
 
+    function submitDelete(){
+        fetch(`/posts/${post.id}`,{
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => deletePost(data))
+    }
+    
     return (
         <form onSubmit={submitEdit}>
             <CardBody>
@@ -48,7 +57,7 @@ function EditForm({post, birds, clickEdit, updatePost}){
             </CardBody>
             <CardBody>
                 <Button color='success' type='submit'>Update Post</Button> 
-                <Button color='danger' type='button'>Delete Post</Button> 
+                <Button color='danger' type='button' onClick={()=>submitDelete()}>Delete Post</Button> 
                 <Button type='button'onClick={()=>clickEdit()}>Cancel</Button>
             </CardBody>
         </form>

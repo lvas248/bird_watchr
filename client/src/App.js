@@ -42,6 +42,12 @@ function App() {
     setPosts(updatedList)
   }
 
+  function deletePost(postObj){
+    const updatedPosts = posts.filter( post =>
+       post.id != postObj.id)
+    setPosts(updatedPosts)
+  }
+
 
   return (
     <div className="App">
@@ -53,7 +59,7 @@ function App() {
         <Switch>
 
           <Route path='/feed'>
-            <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} />          
+            <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} deletePost={deletePost}/>          
           </Route>
 
           <Route  path='/login'>

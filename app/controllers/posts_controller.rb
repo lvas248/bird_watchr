@@ -10,6 +10,12 @@ class PostsController < ApplicationController
         render json: post, status: :ok
     end
 
+    def destroy
+        post = Post.find(params[:id])
+        post.destroy
+        render json: post, status: :ok
+    end
+
     private
 
     def post_params

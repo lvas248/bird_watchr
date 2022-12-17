@@ -2,7 +2,7 @@ import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } fr
 import React, { useState } from 'react'
 import EditForm from './EditForm'
 
-function Post({post, user, birds, updatePost}){
+function Post({post, user, birds, updatePost, deletePost}){
 
     const [ editClick, setEditClick ] = useState(false)
 
@@ -19,7 +19,7 @@ function Post({post, user, birds, updatePost}){
             <Card body>
                 <CardImg alt='bird' src={post.image_url}></CardImg>
 
-                {editClick ? <EditForm post={post} birds={birds} clickEdit={clickEdit} updatePost={updatePost}/> :(
+                {editClick ? <EditForm post={post} birds={birds} clickEdit={clickEdit} updatePost={updatePost} deletePost={deletePost}/> :(
                     <>                    
                         <CardBody>
                             <CardTitle tag='h5'>🦅 {post.bird.name}</CardTitle>
