@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { CardBody, Label, Input, Button } from 'reactstrap'
 
-function EditForm({post, birds, clickEdit, updateBird}){
+function EditForm({post, birds, clickEdit, updatePost}){
 
     const [ postObj, setPostObj ] = useState({
         bird_id: post.bird.id,
@@ -14,7 +14,7 @@ function EditForm({post, birds, clickEdit, updateBird}){
         return <option key={bird.id} value={bird.id}>{bird.name}</option>
     })
 
-    function updatePost(key, e){
+    function updatePostObj(key, e){
         const copy = {...postObj}
         copy[key] = e.target.value
         setPostObj(copy)
@@ -30,7 +30,7 @@ function EditForm({post, birds, clickEdit, updateBird}){
             body: JSON.stringify(postObj)
         })
         .then(res => res.json())
-        .then( data => updateBird(data))
+        .then( data => updatePost(data))
         clickEdit()
     }
 
@@ -39,11 +39,11 @@ function EditForm({post, birds, clickEdit, updateBird}){
             <CardBody>
                 <Label><strong>Bird: </strong></Label>
                 <div>    
-                    <select onChange={e=>updatePost('bird_id',e)}>{renderOptions}</select>
+                    <select onChange={e=>updatePostObj('bird_id',e)}>{renderOptions}</select>
                 </div>
                     <Label><strong>Caption: </strong></Label>
                 <div>    
-                    <Input value={postObj.caption} onChange={e=> updatePost('caption',e)}/>
+                    <Input value={postObj.caption} onChange={e=> updatePostObj('caption',e)}/>
                 </div>
             </CardBody>
             <CardBody>

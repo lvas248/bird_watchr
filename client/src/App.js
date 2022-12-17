@@ -34,12 +34,12 @@ function App() {
     setUser({})
   }
 
-  function updateBird(birdObj){
-    const updatedList = birds.map( bird =>{
-      if(birdObj.id === bird.id) return birdObj
-      else return bird
+  function updatePost(postObj){
+    const updatedList = posts.map( post =>{
+      if(postObj.id === post.id) return postObj
+      else return post
     })
-    setBirds(updatedList)
+    setPosts(updatedList)
   }
 
 
@@ -53,7 +53,7 @@ function App() {
         <Switch>
 
           <Route path='/feed'>
-            <Feed posts={posts} user={user} birds={birds} updateBird={updateBird} />          
+            <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} />          
           </Route>
 
           <Route  path='/login'>

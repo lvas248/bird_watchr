@@ -1,9 +1,9 @@
 import Post from './Post';
 
-function Feed({posts, user, birds, updateBird}){
+function Feed({posts, user, birds, updatePost}){
 
     const renderCards = posts.map( post =>{
-        return <Post key={post.id} post={post} user={user} birds={birds} updateBird={updateBird}/>
+        return <Post key={post.id} post={post} user={user} birds={birds} updatePost={updatePost}/>
         })
         
     return (
