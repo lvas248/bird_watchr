@@ -4,6 +4,12 @@ class PostsController < ApplicationController
         render json: Post.all, status: :ok
     end
 
+    def create
+        post = Post.create!(post_params)
+        post.update(user_id: session[:user_id])
+        render json: post, status: :created
+    end
+
     def update
         post = Post.find(params[:id])
         post.update(post_params)

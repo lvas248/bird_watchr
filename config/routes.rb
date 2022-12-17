@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :birds
 
   patch '/posts', to: 'posts#update'
+  post '/posts', to: 'posts#create'
 
   post '/signup', to: 'users#create'
 
