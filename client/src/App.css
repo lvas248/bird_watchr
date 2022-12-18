@@ -3,7 +3,7 @@
   display: grid;
   height: 100vh;
   width: 100%;
-  padding: 2%;
+  padding: 1%;
   overflow: hidden;
 }
 
@@ -49,7 +49,7 @@
 
 #card {
   text-align: left;
-  width: 100%;
+  width: 60%;
   margin: auto;
 }
 
@@ -82,7 +82,7 @@
 }
 
 #title {
-  margin: 10px;
+  margin: 5px;
 }
 
 #switch_container{
@@ -93,14 +93,20 @@
 
 @media(max-width: 960px){
  
+  .card{
+    width: 100%;
+  }
   .card.card-body{
-    width: 90%;
+    width: 100%;
+  }
+  div#feed{
+    padding: 0px;
   }
 
 }
 .navBtn {
   text-decoration: none;
-  padding: 20px;
+  padding: 10px;
   border-radius: 25px;
 
 }
@@ -120,5 +126,13 @@ a.active {
 a:link{
   text-decoration: none;
   color: green;
+}
+
+#birdFormButton{
+  padding: 2px;
+}
+
+.error{
+  color: red;
 }
 

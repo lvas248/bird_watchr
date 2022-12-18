@@ -18,7 +18,6 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
         const copy = {...postObj}
         copy[key] = e.target.value
         setPostObj(copy)
-        console.log(copy)
     }
 
     function submitEdit(e){

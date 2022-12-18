@@ -5,6 +5,7 @@ import Login from './Login';
 import Signup from './Signup';
 import Navbar from './Navbar';
 import Feed from './Feed';
+import NewPost from './NewPost';
 
 function App() {
   const [ user, setUser ] = useState({})
@@ -44,8 +45,12 @@ function App() {
 
   function deletePost(postObj){
     const updatedPosts = posts.filter( post =>
-       post.id != postObj.id)
+       post.id !== postObj.id)
     setPosts(updatedPosts)
+  }
+
+  function addPost(newPostObj){
+    setPosts([newPostObj, ...posts])
   }
 
 
@@ -60,6 +65,10 @@ function App() {
 
           <Route path='/feed'>
             <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} deletePost={deletePost}/>          
+          </Route>
+
+          <Route path='/new-post'>
+            <NewPost birds={birds} user={user} addPost={addPost}/>
           </Route>
 
           <Route  path='/login'>

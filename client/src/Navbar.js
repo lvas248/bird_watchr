@@ -28,7 +28,7 @@ function Navbar({user, removeUser}){
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <NavLink to="/post"  className='navBtn'>
+                    <NavLink to="/new-post"  className='navBtn'>
                         <strong>Post Bird</strong>
                     </NavLink>
                 </NavItem>

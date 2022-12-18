@@ -38,10 +38,10 @@ function Signup({updateUser}){
                 <Input value={signupObj.username} onChange={e=> updateSignupObj('username', e.target.value)}/>
 
                 <Label>Password</Label>
-                <Input value={signupObj.password} onChange={e=> updateSignupObj('password', e.target.value)}/>
+                <Input value={signupObj.password} type='password' onChange={e=> updateSignupObj('password', e.target.value)}/>
 
                 <Label>Password</Label>
-                <Input value={signupObj.password_confirmation} onChange={e=> updateSignupObj('password_confirmation', e.target.value)}/>
+                <Input value={signupObj.password_confirmation} type='password' onChange={e=> updateSignupObj('password_confirmation', e.target.value)}/>
 
             <Button color='primary'>Submit</Button>
 

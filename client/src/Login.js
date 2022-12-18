@@ -45,12 +45,12 @@ function Login({updateUser}){
                 <Input value={loginObj.username} onChange={e=> updateLoginObj('username', e.target.value)}/>
 
                 <Label>Password</Label>
-                <Input value={loginObj.password} onChange={e=> updateLoginObj('password', e.target.value)}/>
+                <Input value={loginObj.password} type='password' onChange={e=> updateLoginObj('password', e.target.value)}/>
 
                <Button color='primary'>Login</Button>
             </Form>
 
-            {errors ? <p style={{ color: "red" }}>{errors}</p> : null}
+            {errors ? <p className='error'>{errors}</p> : null}
 
             <div id='toSignup'>
                 <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>

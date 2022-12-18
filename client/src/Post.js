@@ -1,3 +1,4 @@
+
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 import React, { useState } from 'react'
 import EditForm from './EditForm'
@@ -6,7 +7,7 @@ function Post({post, user, birds, updatePost, deletePost}){
 
     const [ editClick, setEditClick ] = useState(false)
 
-    const isUserPost = post.user.id === user.id
+    const isUserPost = (post.user.id === user.id)
 
     function clickEdit(){
         setEditClick(!editClick)
@@ -16,7 +17,7 @@ function Post({post, user, birds, updatePost, deletePost}){
 
     return (
         <div id='card'>
-            <Card body>
+            <Card className='card' body>
                 <CardImg alt='bird' src={post.image_url}></CardImg>
 
                 {editClick ? <EditForm post={post} birds={birds} clickEdit={clickEdit} updatePost={updatePost} deletePost={deletePost}/> :(
@@ -27,10 +28,10 @@ function Post({post, user, birds, updatePost, deletePost}){
                             <CardText>{post.caption}</CardText>
                         </CardBody>
                         
-                        <CardBody>
-                            <Button color='primary'>Like</Button> 
-                            <Button color='secondary'>Comment</Button> 
-                            {isUserPost ? <Button onClick={clickEdit}>Edit</Button> : null }
+                        <CardBody id='buttonCtnr'>
+                            <Button className='lkeButton' color='primary'>Like</Button> 
+                            <Button className='CommentButtons' color='secondary'>Comment</Button> 
+                            {isUserPost ? <Button className='buttons' onClick={clickEdit}>Edit</Button> : null }
                         </CardBody>
                     </>
 
