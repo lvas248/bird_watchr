@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
- 
   resources :posts
   resources :birds
+  resources :likes, only: [:index, :destroy, :create]
 
   patch '/posts', to: 'posts#update'
   post '/posts', to: 'posts#create'

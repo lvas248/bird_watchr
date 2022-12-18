@@ -28,10 +28,10 @@ function Post({post, user, birds, updatePost, deletePost}){
                             <CardText>{post.caption}</CardText>
                         </CardBody>
                         
-                        <CardBody id='buttonCtnr'>
-                            <Button className='lkeButton' color='primary'>Like</Button> 
-                            <Button className='CommentButtons' color='secondary'>Comment</Button> 
-                            {isUserPost ? <Button className='buttons' onClick={clickEdit}>Edit</Button> : null }
+                        <CardBody className='btnContainer'>
+                            <Button className='lkeButton' color='secondary'>🤍</Button> 
+                            <Button className='CommentButtons' color='primary'>⋯</Button> 
+                            {isUserPost ? <Button color='success' onClick={clickEdit}>✏️</Button> : null }
                         </CardBody>
                     </>
 

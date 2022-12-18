@@ -54,10 +54,10 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
                     <Input value={postObj.caption} onChange={e=> updatePostObj('caption',e)}/>
                 </div>
             </CardBody>
-            <CardBody>
-                <Button color='success' type='submit'>Update Post</Button> 
-                <Button color='danger' type='button' onClick={()=>submitDelete()}>Delete Post</Button> 
-                <Button type='button'onClick={()=>clickEdit()}>Cancel</Button>
+            <CardBody className='btnContainer'>
+                <Button color='success' type='submit'>✔</Button> 
+                <Button color='danger' type='button' onClick={()=>submitDelete()}>X</Button> 
+                <Button type='button' color='warning' onClick={()=>clickEdit()}>Cancel</Button>
             </CardBody>
         </form>
 
