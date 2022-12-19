@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
 
-  resources :posts
-  resources :birds
+  resources :comments, only: [:index, :create, :destroy]
+  resources :birds, only: [:index]
   resources :likes, only: [:index, :destroy, :create]
-
-  patch '/posts', to: 'posts#update'
-  post '/posts', to: 'posts#create'
+  resources :posts
 
   post '/signup', to: 'users#create'
 

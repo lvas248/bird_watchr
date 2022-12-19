@@ -33,8 +33,7 @@ function Login({updateUser}){
                 res.json().then(errorData => setErrors(errorData.error))
             }
         })
-        // setLoginObj(obj)
-        // history.push('/')
+        // history.push('/feed')
     }
 
     return (

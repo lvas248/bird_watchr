@@ -78,7 +78,7 @@
 }
 
 #nav_container{
-  margin: 1%;
+  margin: 4%;
 }
 
 #title {
@@ -142,3 +142,12 @@ a:link{
   align-items: center;
 }
 
+.commentCard{
+  text-align: left;
+  padding: 2%;
+}
+
+#commentForm{
+  display: flex;
+  flex-direction: row;
+}

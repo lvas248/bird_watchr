@@ -28,12 +28,14 @@ function App() {
     .then(data => setUser(data))
   },[])
 
+
   function updateUser(userObj){
     setUser(userObj)
   }
   function removeUser(){
     setUser({})
   }
+
 
   function updatePost(postObj){
     const updatedList = posts.map( post =>{
@@ -42,17 +44,16 @@ function App() {
     })
     setPosts(updatedList)
   }
-
   function deletePost(postObj){
     const updatedPosts = posts.filter( post =>
        post.id !== postObj.id)
     setPosts(updatedPosts)
   }
-
   function addPost(newPostObj){
     setPosts([newPostObj, ...posts])
   }
-
+  
+  
   function addLikeToPosts(post_id, newLikeObj){
     // console.log(newLikeObj)
     const post = posts.find(p => p.id === post_id)
@@ -63,7 +64,6 @@ function App() {
     })
     setPosts(updatedPost)
   }
-
  function removeLikeFromPosts(post_id, likeObj_id){
   //Find current post and make copy
   const post = posts.find(p => p.id === post_id)
@@ -80,6 +80,34 @@ function App() {
 
  }
 
+
+  function addCommentToPost(commentObj){
+    const post = posts.find( p => p.id === commentObj.post.id)
+    post.comments = [commentObj, ...post.comments]
+    const copy = posts.map( p => {
+      if(p.id === post.id) return post
+      else return p
+    })
+    setPosts(copy)
+  }
+
+  function deleteCommentFromPosts(commentObj){
+    //Find deleted post in posts list
+    const post = posts.find(p => p.id === commentObj.post.id)
+    //remove comment from found post 
+    post.comments = post.comments.filter( c => {
+      console.log(c.id, commentObj.id)
+        return c.id !== commentObj.id
+    })
+    //replace postObj in post list
+    const copy = posts.map( p => {
+      if(p.id === post.id) return post
+      else return p
+    })
+    setPosts(copy) 
+  }
+
+
   return (
     <div className="App">
       
@@ -90,7 +118,17 @@ function App() {
         <Switch>
 
           <Route path='/feed'>
-            <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} deletePost={deletePost} addLikeToPosts={addLikeToPosts} removeLikeFromPosts={removeLikeFromPosts}/>          
+            <Feed 
+              posts={posts} 
+              user={user} 
+              birds={birds} 
+              updatePost={updatePost} 
+              deletePost={deletePost} 
+              addLikeToPosts={addLikeToPosts} 
+              removeLikeFromPosts={removeLikeFromPosts}
+              addCommentToPost={addCommentToPost}      
+              deleteCommentFromPosts={deleteCommentFromPosts} 
+              />   
           </Route>
 
           <Route path='/new-post'>
