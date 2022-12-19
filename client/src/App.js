@@ -53,6 +53,32 @@ function App() {
     setPosts([newPostObj, ...posts])
   }
 
+  function addLikeToPosts(post_id, newLikeObj){
+    // console.log(newLikeObj)
+    const post = posts.find(p => p.id === post_id)
+    post.likes.push(newLikeObj)
+    const updatedPost = posts.map( p => {
+      if( p.id === post_id ) return post
+      else return p
+    })
+    setPosts(updatedPost)
+  }
+
+ function removeLikeFromPosts(post_id, likeObj_id){
+  //Find current post and make copy
+  const post = posts.find(p => p.id === post_id)
+  //Remove like obj from copy
+  post.likes = post.likes.filter( l => {
+    return l.id !== likeObj_id
+  })
+  //replace the post with copy
+  const updatedPosts = posts.map( p => {
+    if(p.id === post.id) return post
+    else return p
+  })
+  setPosts(updatedPosts)
+
+ }
 
   return (
     <div className="App">
@@ -64,7 +90,7 @@ function App() {
         <Switch>
 
           <Route path='/feed'>
-            <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} deletePost={deletePost}/>          
+            <Feed posts={posts} user={user} birds={birds} updatePost={updatePost} deletePost={deletePost} addLikeToPosts={addLikeToPosts} removeLikeFromPosts={removeLikeFromPosts}/>          
           </Route>
 
           <Route path='/new-post'>

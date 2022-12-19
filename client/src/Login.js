@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
 
 function Login({updateUser}){
@@ -9,7 +9,7 @@ function Login({updateUser}){
     const [ loginObj, setLoginObj ] = useState(obj)
     const [ errors, setErrors ] = useState()
 
-    // const history = useHistory()
+    // const navigate = useNavigate()
 
     function updateLoginObj(key, value){
         const copy = {...loginObj}
