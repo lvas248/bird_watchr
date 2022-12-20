@@ -23,8 +23,6 @@ function CommentForm({user, post, addCommentToPost}){
         setCommentText('')
     }
 
- 
-    
     return (
         <Form onSubmit={submitComment}>
             <FormGroup id='commentForm'>                

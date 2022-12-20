@@ -1,13 +1,17 @@
 import './App.css';
 import React, { useEffect, useState } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route} from 'react-router-dom'
 import Login from './Login';
 import Signup from './Signup';
 import Navbar from './Navbar';
 import Feed from './Feed';
 import NewPost from './NewPost';
+import Alert from './Alert';
 
 function App() {
+
+
+
   const [ user, setUser ] = useState({})
   const [ posts, setPosts ] = useState([])
   const [ birds, setBirds ] = useState([])
@@ -95,7 +99,6 @@ function App() {
     const post = posts.find(p => p.id === commentObj.post.id)
     //remove comment from found post 
     post.comments = post.comments.filter( c => {
-      console.log(c.id, commentObj.id)
         return c.id !== commentObj.id
     })
     //replace postObj in post list
@@ -131,7 +134,18 @@ function App() {
           </Route>
 
           <Route path='/new-post'>
-            <NewPost birds={birds} user={user} addPost={addPost}/>
+
+              {user.username ? (
+              <NewPost 
+                birds={birds} 
+                user={user} 
+                addPost={addPost}
+              />
+              ):(<Alert />)}
+      
+    
+          
+           
           </Route>
 
           <Route  path='/login'>

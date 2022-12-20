@@ -23,22 +23,38 @@ function Navbar({user, removeUser}){
                 pills
                 >
                 <NavItem>
-                    <NavLink to="/feed" className='navBtn'> 
+
+                    <NavLink 
+                        to="/feed" className='navBtn'> 
                         <strong>Feed</strong>
                     </NavLink>
+
                 </NavItem>
+
+
                 <NavItem>
-                    <NavLink to="/new-post"  className='navBtn'>
+
+                    <NavLink 
+                        to="/new-post"  className='navBtn'>
                         <strong>Post Bird</strong>
                     </NavLink>
+
                 </NavItem>
+
+
                 <NavItem>
-                    <NavLink to="mystuff"  className='navBtn'>
+
+                    <NavLink 
+                        to="mystuff"  className='navBtn'>
                        <strong>My Stuff</strong>
                     </NavLink>
+
                 </NavItem>
+
+
                 <NavItem>
-                    { user.id ? <Button onClick={()=>logout()}>Logout</Button> : <NavLink className='navBtn' to="/login"><strong>Login</strong></NavLink>}
+                    { user.id ? (<Button onClick={()=>logout()}>Logout</Button>
+                    ) : <NavLink className='navBtn' to="/login"><strong>Login</strong></NavLink>}
                 </NavItem>
             
             </Nav>            

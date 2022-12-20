@@ -1,5 +1,5 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :caption, :image_url, :user
+  attributes :id, :caption, :image_url
  
   has_one :user, serializer: PostUserSerializer
   has_one :bird

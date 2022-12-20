@@ -14,15 +14,19 @@ function CommentSection({post, user, addCommentToPost, deleteCommentFromPosts}){
 
     return (
         <CardBody>
+
             <CommentForm 
                 post={post} 
                 user={user} 
                 addCommentToPost={addCommentToPost}
-                
                 />
+
             <div id='commentCardContainer'>
+
                 {renderComments}
+
             </div>
+            
         </CardBody>
     
     )

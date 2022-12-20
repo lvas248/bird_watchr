@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import { Form, Label, Input, Button, FormText, FormGroup } from 'reactstrap'
+import { useHistory } from 'react-router-dom'
 
 function NewPost({birds, user, addPost}){
+
+
 
     const [ postObj, setPostObj ] = useState({
         caption: '',
@@ -37,28 +40,41 @@ function NewPost({birds, user, addPost}){
         setPostObj({caption: '',image_url: '',bird_id: ''})   
     }
 
-
     const renderErrors = errors.map( error => {
         return <p key={error} className='error'>{error}</p>
     })
 
-
     const renderOptions = birds.map( bird =>{
-        return <option key={bird.id} value={bird.id}>{bird.name}</option>
+        return <option key={bird.name} value={bird.id}>{bird.name}</option>
     })
 
     return (
    
         <Form onSubmit={submitNewPost}>
             <FormGroup>
+
                 <Label>Image  URL</Label>
-                <Input value={postObj.image_url} onChange={e=>updatePostObj('image_url', e)}/>
+
+                <Input 
+                    value={postObj.image_url} 
+                    onChange={e=>updatePostObj('image_url', e)}
+                />
+
             </FormGroup>
 
             <FormGroup>
+
                 <Label>Bird: </Label>
-                <Input type='select' value={postObj.bird_id} onChange={e=>updatePostObj('bird_id', e)}>{[<option key='0'>Select Bird</option>, ...renderOptions]}</Input>
+
+                <Input 
+                    type='select' 
+                    value={postObj.bird_id} 
+                    onChange={e=>updatePostObj('bird_id', e)}>
+                    {[<option key='0'>Select Bird</option>, ...renderOptions]}
+                </Input>
+
                 <FormText>Click <Button type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
+            
             </FormGroup>
  
             <Label>Caption: </Label>

@@ -11,7 +11,7 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
     })
 
     const renderOptions = birds.map( bird =>{
-        return <option key={bird.id} value={bird.id}>{bird.name}</option>
+        return <option key={bird.name} value={bird.id}>{bird.name}</option>
     })
 
     function updatePostObj(key, e){
@@ -22,7 +22,7 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
 
     function submitEdit(e){
         e.preventDefault()
-        fetch('/posts', {
+        fetch(`/posts/${post.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-type':'application/json'
@@ -47,7 +47,7 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
             <CardBody>
                 <Label><strong>Bird: </strong></Label>
                 <div>    
-                    <select onChange={e=>updatePostObj('bird_id',e)}>{renderOptions}</select>
+                    <select value={postObj.bird_id} onChange={e=>updatePostObj('bird_id',e)}>{renderOptions}</select>
                 </div>
                     <Label><strong>Caption: </strong></Label>
                 <div>    

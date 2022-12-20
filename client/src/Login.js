@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
 
 function Login({updateUser}){
 
+    const history = useHistory()
     const obj = { username: '', password: ''}
 
     const [ loginObj, setLoginObj ] = useState(obj)
@@ -32,20 +33,31 @@ function Login({updateUser}){
                 res.json().then(errorData => setErrors(errorData.error))
             }
         })
-        // history.push('/feed')
+        history.push('/feed')
     }
 
     return (
         <div id='form'>
             <h1>Login</h1>
             <Form onSubmit={submitLogin}>
+
                 <Label>Username</Label>
-                <Input value={loginObj.username} onChange={e=> updateLoginObj('username', e.target.value)}/>
+
+                <Input 
+                    value={loginObj.username} 
+                    onChange={e=> updateLoginObj('username', e.target.value)}
+                />
 
                 <Label>Password</Label>
-                <Input value={loginObj.password} type='password' onChange={e=> updateLoginObj('password', e.target.value)}/>
+
+                <Input 
+                    value={loginObj.password} 
+                    type='password' 
+                    onChange={e=> updateLoginObj('password', e.target.value)}
+                />
 
                <Button color='primary'>Login</Button>
+               
             </Form>
 
             {errors ? <p className='error'>{errors}</p> : null}
