@@ -45,6 +45,10 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
         setEditClick(!editClick)
     }
 
+    function clickComment(){
+        setCommentClick(!commentClick)
+    }
+
 
     return (
         <div id='cardContainer'>
@@ -61,20 +65,19 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
                         </CardBody>
                         
                         <CardBody className='btnContainer'>
-                            { likeObj ? <Button onClick={unlikePost}outline color='primary'>❤️ {post.likes.length}</Button> : <Button onClick={likePost}outline color='secondary'>🤍 {post.likes.length}</Button> 
-  }
-                            <Button className='CommentButtons' color='primary'>⋯</Button> 
+                            { likeObj ? <Button onClick={unlikePost}outline color='primary'>❤️ {post.likes.length}</Button> : <Button onClick={likePost}outline color='secondary'>🤍 {post.likes.length}</Button>}
+                            <Button className='CommentButtons' onClick={clickComment} color='primary'>⋯</Button> 
                             {isUserPost ? <Button color='success' outline onClick={clickEdit}>✏️</Button> : null }
                         </CardBody> 
                     </>
                 )}
 
-             <CommentSection 
-                            post={post} 
-                            user={user} 
-                            addCommentToPost={addCommentToPost}
-                            deleteCommentFromPosts={deleteCommentFromPosts}
-            />
+                { commentClick ? (<CommentSection 
+                                    post={post} 
+                                    user={user} 
+                                    addCommentToPost={addCommentToPost}
+                                    deleteCommentFromPosts={deleteCommentFromPosts}/>
+                                ): null }
 
             </Card>  
                   

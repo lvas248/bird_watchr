@@ -20,7 +20,7 @@ function CommentSection({post, user, addCommentToPost, deleteCommentFromPosts}){
                 addCommentToPost={addCommentToPost}
                 
                 />
-            <div>
+            <div id='commentCardContainer'>
                 {renderComments}
             </div>
         </CardBody>

@@ -64,7 +64,7 @@ function App() {
     })
     setPosts(updatedPost)
   }
- function removeLikeFromPosts(post_id, likeObj_id){
+  function removeLikeFromPosts(post_id, likeObj_id){
   //Find current post and make copy
   const post = posts.find(p => p.id === post_id)
   //Remove like obj from copy
@@ -78,7 +78,7 @@ function App() {
   })
   setPosts(updatedPosts)
 
- }
+  }
 
 
   function addCommentToPost(commentObj){
@@ -90,7 +90,6 @@ function App() {
     })
     setPosts(copy)
   }
-
   function deleteCommentFromPosts(commentObj){
     //Find deleted post in posts list
     const post = posts.find(p => p.id === commentObj.post.id)

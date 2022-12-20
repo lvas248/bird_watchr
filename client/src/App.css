@@ -151,3 +151,8 @@ a:link{
   display: flex;
   flex-direction: row;
 }
+
+#commentCardContainer{
+  max-height: 400px;
+  overflow-y: auto;
+}
