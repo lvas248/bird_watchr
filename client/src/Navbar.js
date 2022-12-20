@@ -1,15 +1,18 @@
 import { Nav, NavItem, Button } from 'reactstrap'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 
 
 function Navbar({user, removeUser}){
+
+    const history = useHistory()
 
     function logout(){
         fetch('/logout',{
             method: 'DELETE'
         })
         removeUser()
+        history.push('/login')
     }
 
     return(

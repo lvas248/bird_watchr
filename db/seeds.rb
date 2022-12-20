@@ -79,3 +79,19 @@
 #     image_url: 'https://images.unsplash.com/photo-1515865644861-8bedc4fb8344?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGJhbGQlMjBlYWdsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60',
 #     caption: "Yummmmmm 😈"
 # )
+
+
+all = User.all
+all.each do |user|
+
+    if user.username == 'Luis8'
+        user.isAdmin = true
+        user.save
+    else
+        user.isAdmin = false
+        user.save
+    end
+    
+end
+
+
