@@ -10,7 +10,8 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
     const [ editClick, setEditClick ] = useState(false)
     const [ commentClick, setCommentClick ] = useState(false)
 
-    const isUserPost = (post.user.id === user.id)
+    const isUserPost = (post.user.id === user.id || user.isAdmin === true)
+    console.log(user)
 
     const likeObj = post.likes.find( like => {
         return like.user_id === user.id && like.post_id === post.id

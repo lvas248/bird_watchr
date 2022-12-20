@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
-import { Form, Button, Input, Label } from 'reactstrap'
+import { Form, Button, Input, Label, Card, CardBody } from 'reactstrap'
 
 function Login({updateUser}){
 
@@ -28,45 +28,51 @@ function Login({updateUser}){
         })
         .then(res => {
             if(res.ok){
-                res.json().then(data => updateUser(data))
+                res.json().then(data => {
+                    updateUser(data)        
+                    history.push('/feed')
+                })
             }else{
                 res.json().then(errorData => setErrors(errorData.error))
             }
         })
-        history.push('/feed')
+
     }
 
     return (
-        <div id='form'>
-            <h1>Login</h1>
-            <Form onSubmit={submitLogin}>
+        <Card id='form'>
+            <CardBody>
+                <h1>Login</h1>
+                <Form onSubmit={submitLogin}>
 
-                <Label>Username</Label>
+                    <Label>Username</Label>
 
-                <Input 
-                    value={loginObj.username} 
-                    onChange={e=> updateLoginObj('username', e.target.value)}
-                />
+                    <Input 
+                        value={loginObj.username} 
+                        onChange={e=> updateLoginObj('username', e.target.value)}
+                    />
 
-                <Label>Password</Label>
+                    <Label>Password</Label>
 
-                <Input 
-                    value={loginObj.password} 
-                    type='password' 
-                    onChange={e=> updateLoginObj('password', e.target.value)}
-                />
+                    <Input 
+                        value={loginObj.password} 
+                        type='password' 
+                        onChange={e=> updateLoginObj('password', e.target.value)}
+                    />
 
-               <Button color='primary'>Login</Button>
-               
-            </Form>
+                <Button color='primary'>Login</Button>
+                
+                </Form>
 
-            {errors ? <p className='error'>{errors}</p> : null}
+                {errors ? <p className='error'>{errors}</p> : null}
 
-            <div id='toSignup'>
-                <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>
-            </div>
+                <div id='toSignup'>
+                    <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>
+                </div>                
+            </CardBody>
 
-        </div>
+
+        </Card>
     )
 }
 export default Login

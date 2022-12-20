@@ -81,17 +81,17 @@
 # )
 
 
-all = User.all
-all.each do |user|
+# all = User.all
+# all.each do |user|
 
-    if user.username == 'Luis8'
-        user.isAdmin = true
-        user.save
-    else
-        user.isAdmin = false
-        user.save
-    end
-    
-end
+#     if user.username == 'Luis8'
+#         user.isAdmin = true
+#         user.save
+#     else
+#         user.isAdmin = false
+#         user.save
+#     end
+
+# end
 
 

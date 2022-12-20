@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Form, Label, Input, Button, FormText, FormGroup } from 'reactstrap'
+import { Form, Label, Input, Button, FormText, FormGroup, Card, CardBody } from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 
 function NewPost({birds, user, addPost}){
-
+    const history = useHistory()
 
 
     const [ postObj, setPostObj ] = useState({
@@ -17,6 +17,7 @@ function NewPost({birds, user, addPost}){
         const copy = {...postObj}
         copy[key] = e.target.value
         setPostObj(copy)
+        history.push('/feed')
     }
 
     function submitNewPost(e){
@@ -49,40 +50,46 @@ function NewPost({birds, user, addPost}){
     })
 
     return (
-   
-        <Form onSubmit={submitNewPost}>
-            <FormGroup>
+        <Card className='card'>
+            <CardBody>
+                <Form onSubmit={submitNewPost}>
+                    <FormGroup>
 
-                <Label>Image  URL</Label>
+                        <Label>Image  URL</Label>
 
-                <Input 
-                    value={postObj.image_url} 
-                    onChange={e=>updatePostObj('image_url', e)}
-                />
+                        <Input 
+                            value={postObj.image_url} 
+                            onChange={e=>updatePostObj('image_url', e)}
+                        />
 
-            </FormGroup>
+                    </FormGroup>
 
-            <FormGroup>
+                    <FormGroup>
 
-                <Label>Bird: </Label>
+                        <Label>Bird: </Label>
 
-                <Input 
-                    type='select' 
-                    value={postObj.bird_id} 
-                    onChange={e=>updatePostObj('bird_id', e)}>
-                    {[<option key='0'>Select Bird</option>, ...renderOptions]}
-                </Input>
+                        <Input 
+                            type='select' 
+                            value={postObj.bird_id} 
+                            onChange={e=>updatePostObj('bird_id', e)}>
+                            {[<option key='0'>Select Bird</option>, ...renderOptions]}
+                        </Input>
 
-                <FormText>Click <Button type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
+                        <FormText>Click <Button type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
+                    
+                    </FormGroup>
+        
+                    <Label>Caption: </Label>
+                    <Input type='textarea' value={postObj.caption} onChange={e=>updatePostObj('caption',e)}/>
+                    {errors ? renderErrors : null}
             
-            </FormGroup>
- 
-            <Label>Caption: </Label>
-            <Input type='textarea' value={postObj.caption} onChange={e=>updatePostObj('caption',e)}/>
-            {errors ? renderErrors : null}
-    
-            <Button>Submit</Button>
-        </Form>
+                    <Button>Submit</Button>
+                </Form>                
+            </CardBody>
+
+
+        </Card>
+
     )
 }
 

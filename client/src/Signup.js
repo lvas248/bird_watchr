@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
 
 
@@ -8,6 +8,8 @@ function Signup({updateUser}){
     const defaultObj = { username: '', password: '', password_confirmation: ''}
 
     const [ signupObj, setSignupObj ] = useState(defaultObj)
+
+    const history = useHistory()
 
     function updateSignupObj(key, value){
         const copy = {...signupObj}
@@ -27,6 +29,7 @@ function Signup({updateUser}){
         .then(res => res.json())
         .then(data => updateUser(data))
         setSignupObj(defaultObj)
+        history.push('/feed')
     }
 
     return (
@@ -46,7 +49,7 @@ function Signup({updateUser}){
             <Button color='primary'>Submit</Button>
 
             </Form>
-            <NavLink to='/'>Back to Login</NavLink>
+            <NavLink to='/login'>Back to Login</NavLink>
 
 
         </div>
