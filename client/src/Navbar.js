@@ -48,7 +48,7 @@ function Navbar({user, removeUser}){
                 <NavItem>
 
                     <NavLink 
-                        to="mystuff"  className='navBtn'>
+                        to="/my-stuff"  className='navBtn'>
                        <strong>My Stuff</strong>
                     </NavLink>
 

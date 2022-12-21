@@ -17,7 +17,6 @@ function NewPost({birds, user, addPost}){
         const copy = {...postObj}
         copy[key] = e.target.value
         setPostObj(copy)
-        history.push('/feed')
     }
 
     function submitNewPost(e){
@@ -31,7 +30,10 @@ function NewPost({birds, user, addPost}){
         })
         .then(res => {
             if(res.ok){
-                res.json().then(data => addPost(data))
+                res.json().then(data => {
+                    addPost(data)
+                    history.push('/feed')
+                })
             }else{
                 res.json().then(errorData => setErrors(errorData.errors))
             }

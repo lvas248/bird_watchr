@@ -6,6 +6,7 @@ import Signup from './Signup';
 import Navbar from './Navbar';
 import Feed from './Feed';
 import NewPost from './NewPost';
+import MyStuff from './MyStuff';
 import Alert from './Alert';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
     .then(res => res.json())
     .then(data => {
       setPosts(data)    
-      // history.push('/feed')
+      history.push('/feed')
     })
   },[])
   useEffect(()=>{
@@ -145,10 +146,14 @@ function App() {
                 addPost={addPost}
               />
               ):(<Alert />)}
-      
-    
-          
-           
+          </Route>
+
+          <Route path='/my-stuff'>
+
+            {user.username ? (
+                  <MyStuff />
+                ):(<Alert />)}
+  
           </Route>
 
           <Route  path='/login'>
