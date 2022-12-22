@@ -39,7 +39,7 @@ function Navbar({user, removeUser}){
 
                     <NavLink 
                         to="/new-post"  className='navBtn'>
-                        <strong>Post Bird</strong>
+                        <strong>Post</strong>
                     </NavLink>
 
                 </NavItem>
@@ -48,7 +48,7 @@ function Navbar({user, removeUser}){
                 <NavItem>
 
                     <NavLink 
-                        to="/my-stuff"  className='navBtn'>
+                        to="/my-stuff/posts"  className='navBtn'>
                        <strong>My Stuff</strong>
                     </NavLink>
 

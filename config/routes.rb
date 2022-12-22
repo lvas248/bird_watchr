@@ -5,9 +5,14 @@ Rails.application.routes.draw do
   resources :likes, only: [:index, :destroy, :create]
   resources :posts
 
-  post '/signup', to: 'users#create'
+  delete '/users/:id', to: 'users#destroy'
+  
+  patch '/users/:id', to: 'users#update'
 
   get '/me', to: 'users#show'
+
+  post '/signup', to: 'users#create'
+
 
   post '/login', to: 'sessions#create'
 

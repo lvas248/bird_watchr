@@ -154,7 +154,8 @@ a:link{
   flex-direction: row;
   gap: 1%;
   padding: 1%;
-  background-color: lightblue;
+  /* border: 1px solid grey; */
+  /* background-color: lightblue; */
 }
 
 .leftPanel{
@@ -163,13 +164,31 @@ a:link{
   display:flex;
   flex-direction: column;
   gap: 1%;
+  /* border: 1px solid black; */
 }
 
 #rightPanel{
+  padding: 1%;
+  width: 100%;
+  overflow: auto;
   flex-basis: 75%;
-  background-color: lightyellow;
+  background-color: white;
+  /* border: 1px solid grey; */
+
 }
 
 .navItem {
   border-radius: 50px;
 }
+
+#profilePanel{
+  height: 33%;
+  background-color: rgb(240, 240, 240);
+  justify-content: center;
+}
+
+#profilePanel > * {
+  margin: 5%;
+}
+
+

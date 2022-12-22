@@ -113,6 +113,27 @@ function App() {
     setPosts(copy) 
   }
 
+  function updateUsername(userObj){
+    //Update users state
+    setUser(userObj)
+    //Update all posts with new user name
+    const updatedPosts = posts.map( p => {
+      if( p.user.id === userObj.id){
+          const copy = {...p}
+          p.user.username = userObj.username
+          return copy 
+       }else return p
+    })
+    setPosts(updatedPosts)
+  }
+  function removeDeletedUserPosts(userObj){
+    const updatedPosts = posts.filter( p =>{
+      return p.user.id !== userObj.id
+    })
+    setPosts(updatedPosts)
+    removeUser()
+  }
+  
 
   return (
     <div className="App">
@@ -151,7 +172,19 @@ function App() {
           <Route path='/my-stuff'>
 
             {user.username ? (
-                  <MyStuff />
+                  <MyStuff 
+                    user={user}
+                    posts={posts}
+                    birds={birds} 
+                    updatePost={updatePost} 
+                    deletePost={deletePost} 
+                    addLikeToPosts={addLikeToPosts} 
+                    removeLikeFromPosts={removeLikeFromPosts}
+                    addCommentToPost={addCommentToPost}      
+                    deleteCommentFromPosts={deleteCommentFromPosts} 
+                    updateUsername={updateUsername}
+                    removeDeletedUserPosts={removeDeletedUserPosts}
+                  />
                 ):(<Alert />)}
   
           </Route>
