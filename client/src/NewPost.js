@@ -77,7 +77,7 @@ function NewPost({birds, user, addPost}){
                             {[<option key='0'>Select Bird</option>, ...renderOptions]}
                         </Input>
 
-                        <FormText>Click <Button type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
+                        <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
                     
                     </FormGroup>
         

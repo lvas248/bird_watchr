@@ -159,7 +159,7 @@ a:link{
 }
 
 .leftPanel{
-  flex-basis: 25%;
+  flex-basis: 15%;
   background-color: white;
   display:flex;
   flex-direction: column;
@@ -171,7 +171,7 @@ a:link{
   padding: 1%;
   width: 100%;
   overflow: auto;
-  flex-basis: 75%;
+  flex-basis: 85%;
   background-color: white;
   /* border: 1px solid grey; */
 
@@ -192,3 +192,10 @@ a:link{
 }
 
 
+.formGroup{
+  text-align: left;
+}
+
+#addBirdForm{
+  padding: 5%;
+}

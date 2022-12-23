@@ -8,6 +8,7 @@ import Feed from './Feed';
 import NewPost from './NewPost';
 import MyStuff from './MyStuff';
 import Alert from './Alert';
+import AddBird from './AddBird';
 
 function App() {
 
@@ -134,7 +135,9 @@ function App() {
     removeUser()
   }
   
-
+  function addBirdToList(newBirdObj){
+    setBirds([...birds, newBirdObj])
+  }
   return (
     <div className="App">
       
@@ -197,6 +200,9 @@ function App() {
             <Signup updateUser={updateUser}/>          
           </Route>
 
+          <Route path='/add-bird'>
+            <AddBird addBirdToList={addBirdToList}/>
+          </Route>
 
         </Switch>
       </div>
