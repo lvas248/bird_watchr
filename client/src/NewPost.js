@@ -83,11 +83,12 @@ function NewPost({birds, user, addPost}){
         
                     <Label>Caption: </Label>
                     <Input type='textarea' value={postObj.caption} onChange={e=>updatePostObj('caption',e)}/>
-                    {errors ? renderErrors : null}
             
                     <Button>Submit</Button>
+                    
                 </Form>                
             </CardBody>
+            {errors ? renderErrors : null}
 
 
         </Card>

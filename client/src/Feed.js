@@ -17,7 +17,7 @@ function Feed({posts, user, birds, updatePost, deletePost, addLikeToPosts, remov
         })
         
     return (
-        <div id='feed'>
+        <div className='feed'>
             
             {renderCards}
         </div>
