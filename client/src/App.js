@@ -23,7 +23,7 @@ function App() {
     .then(res => res.json())
     .then(data => {
       setPosts(data)    
-      history.push('/feed')
+      // history.push('/feed')
     })
   },[])
   useEffect(()=>{

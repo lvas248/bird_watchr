@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 function CommentForm({user, post, addCommentToPost}){
 
     const [ commentText, setCommentText ] = useState('')
+    const [ errors, setErrors ] = useState([])
 
     function submitComment(e){
         e.preventDefault()
@@ -18,10 +19,23 @@ function CommentForm({user, post, addCommentToPost}){
                 content: commentText
             })
         })
-        .then(res => res.json())
-        .then(data => addCommentToPost(data))
-        setCommentText('')
+        .then(res => {
+            if(res.ok){
+                res.json().then(data => {
+                    addCommentToPost(data)
+                    setCommentText('')
+                })
+            }else{
+                res.json().then(data => setErrors(data.errors))
+            }
+        })
+
+
     }
+
+    const renderErrors = errors.map( e => {
+        return <p key={e} className='error'>{e}</p> 
+    })
 
     return (
         <Form onSubmit={submitComment}>
@@ -32,7 +46,9 @@ function CommentForm({user, post, addCommentToPost}){
                     onChange={e=>setCommentText(e.target.value)}>
                 </Input>
                 <Button>Submit</Button>
-            </FormGroup>
+            </FormGroup>                
+            { errors.length > 0 ? renderErrors : null }
+
         </Form>
     )
 }
