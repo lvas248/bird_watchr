@@ -4,6 +4,8 @@ import { CardBody, Label, Input, Button } from 'reactstrap'
 
 function EditForm({post, birds, clickEdit, updatePost, deletePost}){
 
+    const [ errors, setErrors ] = useState([])
+
     const [ postObj, setPostObj ] = useState({
         bird_id: post.bird.id,
         caption: post.caption,
@@ -12,6 +14,10 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
 
     const renderOptions = birds.map( bird =>{
         return <option key={bird.name} value={bird.id}>{bird.name}</option>
+    })
+
+    const renderErrors = errors.map( e => {
+        return <p key={e} className='error'>{e}</p>
     })
 
     function updatePostObj(key, e){
@@ -29,9 +35,17 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
             },
             body: JSON.stringify(postObj)
         })
-        .then(res => res.json())
-        .then( data => updatePost(data))
-        clickEdit()
+        .then(res => {
+            if(res.ok){
+                res.json().then( data => {
+                    updatePost(data)
+                    clickEdit()
+                })
+            }else{
+                res.json().then( data => setErrors(data.errors))
+            }
+        
+        })
     }
 
     function submitDelete(){
@@ -59,6 +73,7 @@ function EditForm({post, birds, clickEdit, updatePost, deletePost}){
                 <Button color='danger' type='button' onClick={()=>submitDelete()}>X</Button> 
                 <Button type='button' color='warning' onClick={()=>clickEdit()}>Cancel</Button>
             </CardBody>
+            { errors.length > 0 ? renderErrors : null }
         </form>
 
     )
