@@ -28,7 +28,7 @@ function Navbar({user, removeUser}){
                 <NavItem>
 
                     <NavLink 
-                        to="/feed" className='navBtn'> 
+                        exact to="/" className='navBtn'> 
                         <strong>Feed</strong>
                     </NavLink>
 

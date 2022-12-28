@@ -3,8 +3,8 @@ import { Form, Label, Input, Button, FormText, FormGroup, Card, CardBody } from 
 import { useHistory } from 'react-router-dom'
 
 function NewPost({birds, user, addPost}){
-    const history = useHistory()
 
+    const history = useHistory()
 
     const [ postObj, setPostObj ] = useState({
         caption: '',
@@ -52,46 +52,47 @@ function NewPost({birds, user, addPost}){
     })
 
     return (
-        <Card className='card'>
-            <CardBody>
-                <Form onSubmit={submitNewPost}>
-                    <FormGroup>
+        <div id='postFormContainer'>        
+            <Card className='card'>
+                <CardBody>
+                    <Form onSubmit={submitNewPost}>
+                        <FormGroup>
 
-                        <Label>Image  URL</Label>
+                            <Label>Image  URL</Label>
 
-                        <Input 
-                            value={postObj.image_url} 
-                            onChange={e=>updatePostObj('image_url', e)}
-                        />
+                            <Input 
+                                value={postObj.image_url} 
+                                onChange={e=>updatePostObj('image_url', e)}
+                            />
 
-                    </FormGroup>
+                        </FormGroup>
 
-                    <FormGroup>
+                        <FormGroup>
 
-                        <Label>Bird: </Label>
+                            <Label>Bird: </Label>
 
-                        <Input 
-                            type='select' 
-                            value={postObj.bird_id} 
-                            onChange={e=>updatePostObj('bird_id', e)}>
-                            {[<option key='0'>Select Bird</option>, ...renderOptions]}
-                        </Input>
+                            <Input 
+                                type='select' 
+                                value={postObj.bird_id} 
+                                onChange={e=>updatePostObj('bird_id', e)}>
+                                {[<option key='0'>Select Bird</option>, ...renderOptions]}
+                            </Input>
 
-                        <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
-                    
-                    </FormGroup>
-        
-                    <Label>Caption: </Label>
-                    <Input type='textarea' value={postObj.caption} onChange={e=>updatePostObj('caption',e)}/>
+                            <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
+                        
+                        </FormGroup>
             
-                    <Button>Submit</Button>
-                    
-                </Form>                
-            </CardBody>
-            {errors ? renderErrors : null}
+                        <Label>Caption: </Label>
+                        <Input type='textarea' value={postObj.caption} onChange={e=>updatePostObj('caption',e)}/>
+                
+                        <Button>Submit</Button>
+                        
+                    </Form>                
+                </CardBody>
+                {errors ? renderErrors : null}
+            </Card>
+        </div>
 
-
-        </Card>
 
     )
 }

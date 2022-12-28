@@ -1,6 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react'
-import { Switch, Route, useHistory } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import Login from './Login';
 import Signup from './Signup';
 import Navbar from './Navbar';
@@ -13,7 +13,6 @@ import DisplayBird from './DisplayBird';
 
 function App() {
 
-  const history = useHistory()
 
   const [ user, setUser ] = useState({})
   const [ posts, setPosts ] = useState([])
@@ -24,7 +23,6 @@ function App() {
     .then(res => res.json())
     .then(data => {
       setPosts(data)    
-      // history.push('/feed')
     })
   },[])
   useEffect(()=>{
@@ -139,6 +137,7 @@ function App() {
   function addBirdToList(newBirdObj){
     setBirds([...birds, newBirdObj])
   }
+  
   return (
     <div className="App">
       
@@ -148,7 +147,7 @@ function App() {
 
         <Switch>
 
-          <Route path='/feed'>
+          <Route exact path='/'>
             <Feed 
               posts={posts} 
               user={user} 

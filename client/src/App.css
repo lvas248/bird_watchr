@@ -1,14 +1,12 @@
 .App {
   text-align: center;
+  align-content: inherit;
   display: grid;
   height: 100vh;
   width: 100%;
   padding: 1%;
   overflow: hidden;
 }
-
-
-
 
 
 #form {
@@ -51,13 +49,14 @@
 .feed{
   display: grid;
   grid-template-columns: auto;
-  max-height: 100%;
+  max-height: 85%;
   overflow: auto;
   /* background-color: black; */
 }
 
 #nav_container{
-  margin: 1%;
+  padding: 2%;
+  margin-bottom: 1%;
 }
 
 #title {
@@ -66,6 +65,7 @@
 
 #switch_container{
   /* padding: 5%; */
+  height: 100vh;
   width: 100%;
   overflow: hidden;
 }
@@ -127,7 +127,8 @@ a:link{
 }
 
 #myStuffContainer{
-  height: 1080px;
+  margin-top: 0px;
+  height: 100%;
   display: flex;
   flex-direction: row;
   gap: 1%;
@@ -145,14 +146,14 @@ a:link{
 #rightPanel{
   padding: 1%;
   width: 100%;
-  max-height: 50%;
+  max-height: 100%;
   flex-basis: 85%;
   background-color: white;
 
 }
 
 .navItem {
-  border-radius: 50px;
+  border-radius: 25px;
 }
 
 #profilePanel{
@@ -190,6 +191,10 @@ a:link{
   max-width: 25%;
 }
 
+#postFormContainer{
+  padding: 4%;
+}
+
 @media(max-width: 960px){
  
   .card{
@@ -212,6 +217,12 @@ a:link{
   #displayDiv img{
     height: auto;
     max-width: 60%;
+  }
+
+  div#nav_container{
+    padding: 2%;
+    max-height: 110px;
+    margin-bottom: 1%;
   }
 
 }

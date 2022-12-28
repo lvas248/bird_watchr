@@ -34,6 +34,7 @@ function ProfileEditForm({clickEdit, user, updateUsername}){
             }
         })
     }
+
     return (
         <form onSubmit={submitNameChange}>
             <Input value={inputText} onChange={e=> setInputText(e.target.value)}/>

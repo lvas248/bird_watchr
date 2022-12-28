@@ -4,12 +4,12 @@ import { Form, Button, Input, Label, Card, CardBody } from 'reactstrap'
 
 function Login({updateUser}){
 
-    const history = useHistory()
     const obj = { username: '', password: ''}
 
     const [ loginObj, setLoginObj ] = useState(obj)
     const [ errors, setErrors ] = useState()
 
+    const history = useHistory()
 
     function updateLoginObj(key, value){
         const copy = {...loginObj}
@@ -30,7 +30,7 @@ function Login({updateUser}){
             if(res.ok){
                 res.json().then(data => {
                     updateUser(data)        
-                    history.push('/feed')
+                    history.push('/')
                 })
             }else{
                 res.json().then(errorData => setErrors(errorData.error))
