@@ -3,10 +3,10 @@ import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } fr
 import React, { useState } from 'react'
 import EditForm from './EditForm'
 import CommentSection from './CommentSection'
-
+import { useHistory } from 'react-router-dom'
 function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, removeLikeFromPosts, addCommentToPost, deleteCommentFromPosts}){
 
-    
+    const history = useHistory()
     const [ editClick, setEditClick ] = useState(false)
     const [ commentClick, setCommentClick ] = useState(false)
 
@@ -49,6 +49,9 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
         setCommentClick(!commentClick)
     }
 
+    function displayBird(){
+        history.push(`/display-bird/${post.bird.id}`)
+    }
 
     return (
         <div id='cardContainer'>
@@ -59,7 +62,7 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
                 {editClick ? <EditForm post={post} birds={birds} clickEdit={clickEdit} updatePost={updatePost} deletePost={deletePost}/> :(
                     <>                    
                         <CardBody>
-                            <CardTitle tag='h5'>🦅 {post.bird.name}</CardTitle>
+                            <CardTitle className='birdName' onClick={displayBird} tag='h5'>🦅 {post.bird.name}</CardTitle>
                             <CardSubtitle tag='h6'>👤 {post.user.username}</CardSubtitle>
                             <CardText>{post.caption}</CardText>
                         </CardBody>

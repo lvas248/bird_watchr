@@ -9,6 +9,7 @@ import NewPost from './NewPost';
 import MyStuff from './MyStuff';
 import Alert from './Alert';
 import AddBird from './AddBird';
+import DisplayBird from './DisplayBird';
 
 function App() {
 
@@ -203,6 +204,11 @@ function App() {
           <Route path='/add-bird'>
             <AddBird addBirdToList={addBirdToList}/>
           </Route>
+
+          <Route path='/display-bird/:id'>
+            <DisplayBird birds={birds}/>
+          </Route>
+          
 
         </Switch>
       </div>

@@ -70,21 +70,7 @@
   overflow: hidden;
 }
 
-@media(max-width: 960px){
- 
-  .card{
-    width: 100%;
-  }
-  .card.card-body{
-    width: 100%;
-  }
-  .feed{
-    padding: 0px;
-    overflow: auto;
-    /* height: auto; */
-  }
 
-}
 
 
 .navBtn {
@@ -186,4 +172,46 @@ a:link{
 
 #addBirdForm{
   padding: 5%;
+}
+
+.birdName:hover{
+  cursor: pointer;
+}
+
+
+
+#displayDiv{
+  display: flex;
+  flex-direction: row;
+  padding: 2%;
+}
+#displayDiv img{
+  height: auto;
+  max-width: 25%;
+}
+
+@media(max-width: 960px){
+ 
+  .card{
+    width: 100%;
+  }
+  .card.card-body{
+    width: 100%;
+  }
+  .feed{
+    padding: 0px;
+    overflow: auto;
+    /* height: auto; */
+  }
+
+  #displayDiv{
+    display: block;
+    padding: 2%;
+
+  }
+  #displayDiv img{
+    height: auto;
+    max-width: 60%;
+  }
+
 }
