@@ -18,7 +18,7 @@ function Navbar({user, removeUser}){
     return(
         <div id='nav_container'>
             <div id='title'>
-                <h1>Bird Watchr</h1>    
+                <h1>Bird Watcher</h1>    
             </div>
 
             <Nav

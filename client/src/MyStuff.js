@@ -20,7 +20,7 @@ function MyStuff({user, posts, birds, updatePost, deletePost, addLikeToPosts, re
  
                     <Route exact path='/my-stuff/posts'>
                         <Feed className='switchContainer'
-                            posts={userPosts} 
+                            posts={ userPosts} 
                             user={user} 
                             birds={birds} 
                             updatePost={updatePost} 

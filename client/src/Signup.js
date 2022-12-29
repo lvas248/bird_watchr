@@ -8,6 +8,7 @@ function Signup({updateUser}){
     const defaultObj = { username: '', password: '', password_confirmation: ''}
 
     const [ signupObj, setSignupObj ] = useState(defaultObj)
+    const [ errors, setErrors ] = useState([])
 
     const history = useHistory()
 
@@ -26,11 +27,26 @@ function Signup({updateUser}){
             },
             body: JSON.stringify(signupObj)
         })
-        .then(res => res.json())
-        .then(data => updateUser(data))
-        setSignupObj(defaultObj)
-        history.push('/feed')
+        .then(res => {
+            if(res.ok){
+                res.json().then(data =>{
+                    updateUser(data)
+                    setSignupObj(defaultObj)
+                    history.push('/')
+                    })
+            }else{
+                res.json().then(data => {
+                    setErrors(data.errors)
+                    setSignupObj(defaultObj)
+                })
+            }
+        })
+
     }
+
+    const renderErrors = errors.map( e => {
+        return <p key={e} className='error'>{e}</p>
+    })
 
     return (
         <div id='form'>
@@ -49,6 +65,8 @@ function Signup({updateUser}){
             <Button color='primary'>Submit</Button>
 
             </Form>
+
+            { errors.length > 0 ? renderErrors : null}
             <NavLink to='/login'>Back to Login</NavLink>
 
 

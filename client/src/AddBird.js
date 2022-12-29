@@ -10,6 +10,7 @@ function AddBird({addBirdToList}){
         description: '',
         image_url: ''
     })
+    const [ errors, setErrors ] = useState([])
 
     function updateBirdObj(key, value){
         const copy = {...birdObj}
@@ -26,15 +27,30 @@ function AddBird({addBirdToList}){
             },
             body: JSON.stringify(birdObj)
         })
-        .then(res => res.json() )
-        .then(data => addBirdToList(data))
-        history.goBack()
-        setBirdObj({
-            name: '',
-            description: '',
-            image_url: ''
+        .then(res => {
+            if(res.ok){
+                res.json().then(data => {
+                    addBirdToList(data)
+                    history.goBack()
+                    setBirdObj({
+                        name: '',
+                        description: '',
+                        image_url: ''
+                    })
+                })
+            }else{
+                res.json().then(data => setErrors(data.errors))
+            }
         })
+
+
+
+   
     }
+
+    const renderErrors = errors.map( e => {
+        return <p key={e} className='error'>{e}</p>
+    })
 
     return (
         <Card id='addBirdForm'>
@@ -58,8 +74,11 @@ function AddBird({addBirdToList}){
                 </FormGroup>
 
                 <Button>Submit</Button>
+                <Button onClick={()=> history.goBack()} type='button'>Back</Button>
 
             </Form>
+
+            { errors.length > 0 ? renderErrors : null}
         </Card>
     )
 }

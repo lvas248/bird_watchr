@@ -19,7 +19,7 @@ function Feed({posts, user, birds, updatePost, deletePost, addLikeToPosts, remov
     return (
         <div className='feed'>
             
-            {renderCards}
+            {renderCards.length > 0 ? renderCards : "No user posts"}
         </div>
     )
 }

@@ -61,6 +61,7 @@
 
 #title {
   margin: 5px;
+  color: darkgreen
 }
 
 #switch_container{
@@ -171,7 +172,7 @@ a:link{
   text-align: left;
 }
 
-#addBirdForm{
+#addBirdForm, #newPost{
   padding: 5%;
 }
 
@@ -195,7 +196,12 @@ a:link{
   padding: 4%;
 }
 
-@media(max-width: 960px){
+.formGroup{
+  text-align: left;
+}
+
+
+@media(max-width: 750px){
  
   .card{
     width: 100%;

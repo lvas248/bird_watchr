@@ -7,6 +7,7 @@ import { useHistory } from 'react-router-dom'
 function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, removeLikeFromPosts, addCommentToPost, deleteCommentFromPosts}){
 
     const history = useHistory()
+    
     const [ editClick, setEditClick ] = useState(false)
     const [ commentClick, setCommentClick ] = useState(false)
 
