@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :comments, only: [:index, :create, :destroy]
-  resources :birds, only: [:index, :create, :destroy]
+  resources :birds, only: [:index, :create]
   resources :likes, only: [:index, :destroy, :create]
   resources :posts
 

@@ -43,11 +43,7 @@ function NewPost({birds, user, addPost}){
         setPostObj({caption: '',image_url: '',bird_id: ''})   
     }
 
-    function deleteBird(){
-        fetch(`/birds/${postObj.bird_id}`,{
-            method: 'DELETE'
-        })
-    }
+ 
     const renderErrors = errors.map( error => {
         return <p key={error} className='error'>{error}</p>
     })
@@ -71,7 +67,7 @@ function NewPost({birds, user, addPost}){
                                 {[<option key='0'>Select Bird</option>, ...renderOptions]}
                             </Input>
                         </FormGroup>   
-                        <Button type='button' onClick={deleteBird}>Delete Bird</Button>
+     
 
                         <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
 

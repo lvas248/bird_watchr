@@ -9,10 +9,7 @@ class BirdsController < ApplicationController
         render json: bird, status: :created
     end
 
-    def destroy
-        bird = Bird.find(params[:id])
-        bird.destroy
-    end
+
 
     private
 
