@@ -12,9 +12,9 @@ function CommentCard({comment, user, deleteCommentFromPosts}){
 
     return(
         <Card className='commentCard'>
-                <CardTitle tag='h6'>👤{comment.user.username}</CardTitle>
+                <CardTitle tag='h6'>👤{comment.commenter.username}</CardTitle>
                 <CardText>⋯{comment.content}</CardText>
-                {comment.user.id === user.id ? (
+                {comment.commenter.id === user.id ? (
                     <div>
                         <Button size='sm' onClick={deleteComment}>❌</Button>
                     </div>

@@ -1,5 +1,6 @@
 class PostCommentSerializer < ActiveModel::Serializer
-  attributes :id, :user
+  attributes :id, 
  
+
 
 end

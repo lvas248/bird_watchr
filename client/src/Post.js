@@ -30,7 +30,7 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
             })
         })
         .then(res => res.json())
-        .then(data => addLikeToPosts(post.id, data))
+        .then(data => addLikeToPosts(data))
 
     }
 

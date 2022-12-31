@@ -62,12 +62,12 @@ function App() {
   }
   
   
-  function addLikeToPosts(post_id, newLikeObj){
+  function addLikeToPosts(newLikeObj){
     // console.log(newLikeObj)
-    const post = posts.find(p => p.id === post_id)
+    const post = posts.find(p => p.id === newLikeObj.post_id)
     post.likes.push(newLikeObj)
     const updatedPost = posts.map( p => {
-      if( p.id === post_id ) return post
+      if( p.id === newLikeObj.post_id) return post
       else return p
     })
     setPosts(updatedPost)
