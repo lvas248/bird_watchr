@@ -90,7 +90,8 @@ function App() {
 
 
   function addCommentToPost(commentObj){
-    const post = posts.find( p => p.id === commentObj.post.id)
+    console.log(commentObj)
+    const post = posts.find( p => p.id === commentObj.post_id)
     post.comments = [commentObj, ...post.comments]
     const copy = posts.map( p => {
       if(p.id === post.id) return post
@@ -100,7 +101,7 @@ function App() {
   }
   function deleteCommentFromPosts(commentObj){
     //Find deleted post in posts list
-    const post = posts.find(p => p.id === commentObj.post.id)
+    const post = posts.find(p => p.id === commentObj.post_id)
     //remove comment from found post 
     post.comments = post.comments.filter( c => {
         return c.id !== commentObj.id
