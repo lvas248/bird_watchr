@@ -90,7 +90,6 @@ function App() {
 
 
   function addCommentToPost(commentObj){
-    console.log(commentObj)
     const post = posts.find( p => p.id === commentObj.post_id)
     post.comments = [commentObj, ...post.comments]
     const copy = posts.map( p => {
