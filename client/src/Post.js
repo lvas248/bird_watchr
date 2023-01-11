@@ -75,12 +75,11 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
                             <CardText>{post.caption}</CardText>
                         </CardBody>
                         
-                        {/* { user.username ? ( */}
                         <CardBody className='btnContainer'>
 
                             { likeObj ? <Button onClick={unlikePost}outline color='primary'>❤️ {post.likes.length}</Button> : <Button onClick={likePost} outline color='secondary'>🤍 {post.likes.length}</Button>}
                            
-                            <Button className='CommentButtons' onClick={clickComment} color='primary'>⋯</Button> 
+                            <Button className='CommentButtons' onClick={user.username ? clickComment : null} color='primary'>⋯</Button> 
                             
                             {isUserPost ? <Button color='success' outline onClick={clickEdit}>✏️</Button> : null }
                     

@@ -8,6 +8,7 @@ function MyStuff({user, posts, birds, updatePost, deletePost, addLikeToPosts, re
 
     const userPosts = posts.filter( post => post.user.id === user.id)
 
+    
     const renderMyBirds = user.birds.map( b =>{
         return <p key={b.id}>{b.name}</p>
     })

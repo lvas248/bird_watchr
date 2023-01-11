@@ -32,7 +32,7 @@ skip_before_action :authorize, only: :index
     end
 
     def authorize
-        render json: {error: 'Not Authorized'}, status: :unauthorized unless
+        render json: { error: "Sign in to interact"}, status: :unauthorized unless
         session.include? :user_id
     end
 end
