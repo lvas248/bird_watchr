@@ -232,3 +232,11 @@ a:link{
   }
 
 }
+
+#myBirdDiv{
+  display: flex;
+  flex-direction: row;
+  gap: 1%;
+  justify-content: space-evenly;
+
+}

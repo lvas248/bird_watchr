@@ -8,6 +8,9 @@ function MyStuff({user, posts, birds, updatePost, deletePost, addLikeToPosts, re
 
     const userPosts = posts.filter( post => post.user.id === user.id)
 
+    const renderMyBirds = user.birds.map( b =>{
+        return <p key={b.id}>{b.name}</p>
+    })
     
     return (
         <Card id='myStuffContainer'>
@@ -19,6 +22,10 @@ function MyStuff({user, posts, birds, updatePost, deletePost, addLikeToPosts, re
                 <Switch>
  
                     <Route exact path='/my-stuff/posts'>
+                        <div id='myBirdDiv'>
+                            <h4>My Birds: </h4>
+                            {renderMyBirds}
+                        </div>
                         <Feed className='switchContainer'
                             posts={ userPosts} 
                             user={user} 
