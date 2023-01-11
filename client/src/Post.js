@@ -10,12 +10,14 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
     
     const [ editClick, setEditClick ] = useState(false)
     const [ commentClick, setCommentClick ] = useState(false)
+    const [ error, setError] = useState('')
 
     const isUserPost = (post.user.id === user.id || user.isAdmin === true)
 
     const likeObj = post.likes.find( like => {
         return like.user_id === user.id && like.post_id === post.id
     })
+
 
     function likePost(){
 
@@ -29,9 +31,14 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
                 post_id: post.id
             })
         })
-        .then(res => res.json())
-        .then(data => addLikeToPosts(data))
-
+        .then(res => {
+            if(res.ok){
+                res.json().then(data => addLikeToPosts(data))
+            }else{
+                res.json().then(errorData => setError(errorData.error))
+            }
+        })
+            
     }
 
     function unlikePost(){
@@ -68,7 +75,7 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
                             <CardText>{post.caption}</CardText>
                         </CardBody>
                         
-                        { user.username ? (
+                        {/* { user.username ? ( */}
                         <CardBody className='btnContainer'>
 
                             { likeObj ? <Button onClick={unlikePost}outline color='primary'>❤️ {post.likes.length}</Button> : <Button onClick={likePost} outline color='secondary'>🤍 {post.likes.length}</Button>}
@@ -76,9 +83,11 @@ function Post({post, user, birds, updatePost, deletePost, addLikeToPosts, remove
                             <Button className='CommentButtons' onClick={clickComment} color='primary'>⋯</Button> 
                             
                             {isUserPost ? <Button color='success' outline onClick={clickEdit}>✏️</Button> : null }
-
+                    
                         </CardBody> 
-                        ):( <p className='error'>Login to interact</p> )}
+
+                        { error ? <div><p className='error'>{error}</p></div> : null}
+
                     </>
                 )}
 

@@ -1,4 +1,5 @@
 class LikesController < ApplicationController
+    before_action :authorize
 
     def index
         render json: Like.all, status: :ok
@@ -21,4 +22,8 @@ class LikesController < ApplicationController
         params.permit(:id, :user_id, :post_id)
     end
 
+    def authorize
+        render json: { error: "Sign in to interact"}, status: :unauthorized unless
+        session.include? :user_id
+    end
 end

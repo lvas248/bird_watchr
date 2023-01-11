@@ -1,5 +1,8 @@
 class PostsController < ApplicationController
 
+before_action :authorize
+skip_before_action :authorize, only: :index
+    
     def index
         render json: Post.all.order(:created_at).reverse, status: :ok
     end
@@ -28,4 +31,8 @@ class PostsController < ApplicationController
         params.permit(:id, :caption, :image_url, :user_id, :bird_id)
     end
 
+    def authorize
+        render json: {error: 'Not Authorized'}, status: :unauthorized unless
+        session.include? :user_id
+    end
 end
