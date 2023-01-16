@@ -170,6 +170,9 @@ a:link{
 
 .formGroup{
   text-align: left;
+  border: 1px lightgray solid;
+  padding: 10px;
+  border-radius: 20px;
 }
 
 #addBirdForm, #newPost{
@@ -240,3 +243,20 @@ a:link{
   justify-content: space-evenly;
 
 }
+
+#select{
+  display: flex;
+  flex-direction: row;
+
+}
+
+#select > *{
+  margin-right: 5%;
+}
+
+
+/* #bird{
+  border: 1px grey solid;
+  padding: 10px;
+  border-radius: 25px;
+} */

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Label, Input, Button, FormText, FormGroup, Card } from 'reactstrap'
+import { Form, Label, Input, Button, FormText, FormGroup, Card, Row, Col} from 'reactstrap'
 import { useHistory } from 'react-router-dom'
 
 function NewPost({birds, user, addPost}){
@@ -7,11 +7,14 @@ function NewPost({birds, user, addPost}){
     const history = useHistory()
 
     const [ postObj, setPostObj ] = useState({
+        location:'',
         caption: '',
         image_url: '',
         bird_id: ''
     })
     const [ errors, setErrors ] = useState([])
+
+    const [ radio, setRadio ] = useState(true)
 
     function updatePostObj(key, e){
         const copy = {...postObj}
@@ -40,7 +43,7 @@ function NewPost({birds, user, addPost}){
         })
 
         setErrors([])
-        setPostObj({caption: '',image_url: '',bird_id: ''})   
+        setPostObj({location: '', caption: '', image_url: '', bird_id: ''})   
     }
 
  
@@ -58,18 +61,62 @@ function NewPost({birds, user, addPost}){
                     <h3>New Post</h3>
                     <Form onSubmit={submitNewPost}>
 
-                       <FormGroup className='formGroup'>
-                            <Label className='label'>Bird: </Label>
-                            <Input 
-                                type='select' 
-                                value={postObj.bird_id} 
-                                onChange={e=>updatePostObj('bird_id', e)}>
-                                {[<option key='0'>Select Bird</option>, ...renderOptions]}
-                            </Input>
-                        </FormGroup>   
-     
 
-                        <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText>
+
+                        <FormGroup className='formGroup' id='bird'>
+           
+                                <div id='select'>
+                                
+                                    <Label>Bird: </Label>
+                                
+                                    <div>
+                                        <Input type='radio' name='bird' checked={radio} onChange={()=>setRadio(true)}/>
+                                        <Label >Select</Label>
+                                    </div>
+
+                                    <div>
+                                        <Input type="radio" name='bird' onChange={()=>setRadio(false)}/>
+                                        <Label >Create New</Label>
+                                    </div>
+
+                                </div>
+
+                                { radio ? (
+                                    <FormGroup>
+                                        <Input 
+                                            type='select' 
+                                            value={postObj.bird_id} 
+                                            onChange={e=>updatePostObj('bird_id', e)}>
+                                            {[<option key='0'>Select Bird</option>, ...renderOptions]}
+                                        </Input>
+                                    </FormGroup> 
+                                ):(
+                                    <FormGroup>
+                                        <Row className="row-cols-lg-auto g-3 align-items-center">
+                                            <Col sm={4}>
+                                                <Label>Name</Label>
+                                                <Input />
+                                            </Col>
+
+                                            <Col >
+                                                <Label>Description</Label>
+                                                <Input />
+                                            </Col>
+                                        </Row>
+                                    </FormGroup>
+                                )}
+
+
+                        </FormGroup>
+
+                       <FormGroup className='formGroup'>
+                            <Label className='label'>Location: </Label>
+                            <Input value={postObj.location} onChange={e=>updatePostObj('location', e)}/>
+                        </FormGroup>   
+
+
+
+                        {/* <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText> */}
 
                         <FormGroup className='formGroup'>
                             <Label className='label'>Image  URL:</Label>

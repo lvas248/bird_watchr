@@ -20,19 +20,19 @@ function App() {
   const [ posts, setPosts ] = useState([])
   const [ birds, setBirds ] = useState([])
 
-  useEffect(()=>{
-    fetch('/posts')
-    .then(res => res.json())
-    .then(data => {
-      setPosts(data)    
-    })
-  },[])
+  // useEffect(()=>{
+  //   fetch('/posts')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     setPosts(data)    
+  //   })
+  // },[])
 
-  useEffect(()=>{
-    fetch('/birds')
-    .then(res => res.json())
-    .then(data => setBirds(data))
-  },[])
+  // useEffect(()=>{
+  //   fetch('/birds')
+  //   .then(res => res.json())
+  //   .then(data => setBirds(data))
+  // },[])
 
   useEffect(()=>{
     fetch('/me')
@@ -146,7 +146,7 @@ function App() {
     <UserContext.Provider value={ [user, setUser] }>
     <div className="App">
       
-      <Navbar user={user} removeUser={removeUser}/>
+      <Navbar />
 
       <div id='switch_container'>
 

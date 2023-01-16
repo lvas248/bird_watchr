@@ -25,10 +25,15 @@ skip_before_action :authorize, only: :index
         render json: post, status: :ok
     end
 
+    # def something
+    #     user = User.find(session[:user_id])
+    #     user.posts.create()
+    # end
+
     private
 
     def post_params
-        params.permit(:id, :caption, :image_url, :user_id, :bird_id)
+        params.permit(:id, :location, :caption, :image_url, :user_id, :bird_id)
     end
 
     def authorize

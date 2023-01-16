@@ -1,17 +1,19 @@
 import { Nav, NavItem, Button } from 'reactstrap'
 import { NavLink, useHistory } from 'react-router-dom'
+import { UserContext } from './App'
+import { useContext } from 'react'
 
 
+function Navbar(){
 
-function Navbar({user, removeUser}){
-
+    const [ user, setUser ] = useContext(UserContext)
     const history = useHistory()
 
     function logout(){
         fetch('/logout',{
             method: 'DELETE'
         })
-        removeUser()
+        setUser({})
         history.push('/login')
     }
 
@@ -29,7 +31,7 @@ function Navbar({user, removeUser}){
 
                     <NavLink 
                         exact to="/" className='navBtn'> 
-                        <strong>Feed</strong>
+                        <strong>My Posts</strong>
                     </NavLink>
 
                 </NavItem>
@@ -39,12 +41,12 @@ function Navbar({user, removeUser}){
 
                     <NavLink 
                         to="/new-post"  className='navBtn'>
-                        <strong>Post</strong>
+                        <strong>New Post</strong>
                     </NavLink>
 
                 </NavItem>
 
-
+{/* 
                 <NavItem>
 
                     <NavLink 
@@ -52,7 +54,7 @@ function Navbar({user, removeUser}){
                        <strong>My Stuff</strong>
                     </NavLink>
 
-                </NavItem>
+                </NavItem> */}
 
 
                 <NavItem>
