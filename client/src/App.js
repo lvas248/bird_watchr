@@ -11,8 +11,10 @@ import Alert from './Alert';
 import AddBird from './AddBird';
 import DisplayBird from './DisplayBird';
 
-function App() {
 
+export const UserContext = React.createContext()
+
+function App() {
 
   const [ user, setUser ] = useState({})
   const [ posts, setPosts ] = useState([])
@@ -25,11 +27,13 @@ function App() {
       setPosts(data)    
     })
   },[])
+
   useEffect(()=>{
     fetch('/birds')
     .then(res => res.json())
     .then(data => setBirds(data))
   },[])
+
   useEffect(()=>{
     fetch('/me')
     .then(res => res.json())
@@ -139,6 +143,7 @@ function App() {
   }
   
   return (
+    <UserContext.Provider value={ [user, setUser] }>
     <div className="App">
       
       <Navbar user={user} removeUser={removeUser}/>
@@ -214,6 +219,8 @@ function App() {
 
 
     </div>
+        </UserContext.Provider>
+
   );
 }
 

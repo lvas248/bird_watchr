@@ -15,24 +15,10 @@ ActiveRecord::Schema.define(version: 2022_12_31_001459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "actors", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "birds", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "image_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "characters", force: :cascade do |t|
-    t.string "name"
-    t.integer "movie_id"
-    t.integer "actor_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -54,14 +40,6 @@ ActiveRecord::Schema.define(version: 2022_12_31_001459) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_likes_on_post_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
-  end
-
-  create_table "movies", force: :cascade do |t|
-    t.string "title"
-    t.string "director"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "box_office_earnings"
   end
 
   create_table "posts", force: :cascade do |t|
