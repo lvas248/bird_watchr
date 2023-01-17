@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   post '/signup', to: 'users#create'
 
+  post '/post+bird', to: 'posts#create_post_and_bird'
+
 
   post '/login', to: 'sessions#create'
 

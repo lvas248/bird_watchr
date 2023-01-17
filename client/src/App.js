@@ -28,11 +28,11 @@ function App() {
   //   })
   // },[])
 
-  // useEffect(()=>{
-  //   fetch('/birds')
-  //   .then(res => res.json())
-  //   .then(data => setBirds(data))
-  // },[])
+  useEffect(()=>{
+    fetch('/birds')
+    .then(res => res.json())
+    .then(data => setBirds(data))
+  },[])
 
   useEffect(()=>{
     fetch('/me')
@@ -152,7 +152,7 @@ function App() {
 
         <Switch>
 
-          <Route exact path='/'>
+          {/* <Route exact path='/'>
             <Feed 
               posts={posts} 
               user={user} 
@@ -164,7 +164,7 @@ function App() {
               addCommentToPost={addCommentToPost}      
               deleteCommentFromPosts={deleteCommentFromPosts} 
               />   
-          </Route>
+          </Route> */}
 
           <Route path='/new-post'>
 

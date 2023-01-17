@@ -10,11 +10,17 @@ function NewPost({birds, user, addPost}){
         location:'',
         caption: '',
         image_url: '',
-        bird_id: ''
+        bird_id: '', 
+        bird_attributes: {
+            name: '',
+            description: ''            
+        }
     })
+    
+
     const [ errors, setErrors ] = useState([])
 
-    const [ radio, setRadio ] = useState(true)
+    const [ select, setSelect ] = useState(true)
 
     function updatePostObj(key, e){
         const copy = {...postObj}
@@ -22,29 +28,52 @@ function NewPost({birds, user, addPost}){
         setPostObj(copy)
     }
 
+    function resetPostObj(){
+        setPostObj({
+            location:'',
+            caption: '',
+            image_url: '',
+            bird_id: '', 
+            bird_attributes: {
+                name: '',
+                description: ''            
+            }
+        })
+        
+    }
+
+    function updateNestedBirdAttribbutes(key, value){
+        const  copy = {...postObj.bird_attributes}
+        copy[key] = value
+        setPostObj({...postObj, bird_attributes: copy})
+    }
+
     function submitNewPost(e){
         e.preventDefault()
-        fetch('/posts',{
+        fetch( select ? '/posts' : '/post+bird',{
             method: 'POST',
             headers:{
                 'Content-Type':'application/json'
             },
-            body: JSON.stringify({...postObj, user_id: user.id})
+            body: JSON.stringify({post: postObj})
         })
         .then(res => {
             if(res.ok){
-                res.json().then(data => {
-                    addPost(data)
-                    history.push('/')
-                })
+                res.json().then(data => console.log(data)
+                    // {
+                    // addPost(data)
+                    // history.push('/')
+                // }
+                )
             }else{
                 res.json().then(errorData => setErrors(errorData.errors))
             }
-        })
+        }
+        )
 
-        setErrors([])
-        setPostObj({location: '', caption: '', image_url: '', bird_id: ''})   
+        resetPostObj()
     }
+
 
  
     const renderErrors = errors.map( error => {
@@ -61,33 +90,31 @@ function NewPost({birds, user, addPost}){
                     <h3>New Post</h3>
                     <Form onSubmit={submitNewPost}>
 
-
-
                         <FormGroup className='formGroup' id='bird'>
-           
+            
                                 <div id='select'>
                                 
                                     <Label>Bird: </Label>
                                 
                                     <div>
-                                        <Input type='radio' name='bird' checked={radio} onChange={()=>setRadio(true)}/>
+                                        <Input type='radio' name='bird' checked={select} onChange={()=>setSelect(true)}/>
                                         <Label >Select</Label>
                                     </div>
 
                                     <div>
-                                        <Input type="radio" name='bird' onChange={()=>setRadio(false)}/>
+                                        <Input type="radio" name='bird' onChange={()=>setSelect(false)}/>
                                         <Label >Create New</Label>
                                     </div>
 
                                 </div>
 
-                                { radio ? (
+                                { select ? (
                                     <FormGroup>
                                         <Input 
                                             type='select' 
                                             value={postObj.bird_id} 
                                             onChange={e=>updatePostObj('bird_id', e)}>
-                                            {[<option key='0'>Select Bird</option>, ...renderOptions]}
+                                            {[<option key='0' value='0'>Select Bird</option>, ...renderOptions]}
                                         </Input>
                                     </FormGroup> 
                                 ):(
@@ -95,12 +122,12 @@ function NewPost({birds, user, addPost}){
                                         <Row className="row-cols-lg-auto g-3 align-items-center">
                                             <Col sm={4}>
                                                 <Label>Name</Label>
-                                                <Input />
+                                                <Input value={postObj.bird_attributes.name} onChange={e=> updateNestedBirdAttribbutes('name', e.target.value)}/>
                                             </Col>
 
                                             <Col >
                                                 <Label>Description</Label>
-                                                <Input />
+                                                <Input value={postObj.bird_attributes.description} onChange={e=>updateNestedBirdAttribbutes('description', e.target.value)}/>
                                             </Col>
                                         </Row>
                                     </FormGroup>
@@ -109,14 +136,10 @@ function NewPost({birds, user, addPost}){
 
                         </FormGroup>
 
-                       <FormGroup className='formGroup'>
+                        <FormGroup className='formGroup'>
                             <Label className='label'>Location: </Label>
                             <Input value={postObj.location} onChange={e=>updatePostObj('location', e)}/>
                         </FormGroup>   
-
-
-
-                        {/* <FormText>Click <Button onClick={()=>history.push('/add-bird')} type='button' color='primary' id='birdFormButton' size='sm' outline >here</Button> to add new bird to the list</FormText> */}
 
                         <FormGroup className='formGroup'>
                             <Label className='label'>Image  URL:</Label>
