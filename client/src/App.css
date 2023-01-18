@@ -260,3 +260,26 @@ a:link{
   padding: 10px;
   border-radius: 25px;
 } */
+
+#myFeed{
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+  height: 100vh;
+}
+
+#sideBar{
+  flex-basis: 25%;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+}
+#sideBar > * {
+  margin-bottom: 5%;
+}
+
+#myPosts{
+  flex-basis: 75%;
+  background-color: lightcyan;
+}

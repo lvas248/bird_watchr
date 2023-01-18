@@ -10,6 +10,7 @@ import MyStuff from './MyStuff';
 import Alert from './Alert';
 import AddBird from './AddBird';
 import DisplayBird from './DisplayBird';
+import MyFeed from './MyFeed';
 
 
 export const UserContext = React.createContext()
@@ -17,7 +18,7 @@ export const UserContext = React.createContext()
 function App() {
 
   const [ user, setUser ] = useState({})
-  const [ posts, setPosts ] = useState([])
+  const [ posts, setPosts ] = useState([{}])
   const [ birds, setBirds ] = useState([])
 
   // useEffect(()=>{
@@ -152,8 +153,8 @@ function App() {
 
         <Switch>
 
-          {/* <Route exact path='/'>
-            <Feed 
+          <Route exact path='/'>
+            {/* <Feed 
               posts={posts} 
               user={user} 
               birds={birds} 
@@ -163,8 +164,9 @@ function App() {
               removeLikeFromPosts={removeLikeFromPosts}
               addCommentToPost={addCommentToPost}      
               deleteCommentFromPosts={deleteCommentFromPosts} 
-              />   
-          </Route> */}
+              />    */}
+              <MyFeed user={user} />
+          </Route>
 
           <Route path='/new-post'>
 
