@@ -1,10 +1,9 @@
 class PostSerializer < ActiveModel::Serializer
-  attributes :id, :caption, :image_url
+  attributes :id, :caption, :image_url, :location
  
-  has_one :user, serializer: PostUserSerializer
-  has_one :bird, serializer: PostBirdSerializer
-  has_many :comments
-  has_many :likes
+  belongs_to :user, serializer: PostUserSerializer
+  belongs_to :bird, serializer: PostBirdSerializer
+
 
 
 
