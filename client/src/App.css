@@ -35,7 +35,8 @@
 .card {
   width: 100%;
   margin: auto auto;
-  background-color: rgb(251, 251, 251)
+  background-color: rgb(251, 251, 251);
+  text-align: left;
 }
 
 .card.card-body{
@@ -265,7 +266,7 @@ a:link{
   display: flex;
   flex-direction: row;
   gap: 2%;
-  height: 100vh;
+  height: 88vh;
 }
 
 #sideBar{
@@ -273,7 +274,7 @@ a:link{
   background-color: lightgrey;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
+  overflow-y: auto;
 }
 #sideBar > * {
   margin-bottom: 5%;
@@ -282,4 +283,6 @@ a:link{
 #myPosts{
   flex-basis: 75%;
   background-color: lightcyan;
+  overflow-y: auto;
+
 }

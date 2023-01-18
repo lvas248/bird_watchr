@@ -58,7 +58,7 @@ function Navbar(){
 
 
                 <NavItem>
-                    { user.id ? (<Button onClick={()=>logout()}>Logout</Button>
+                    { user.username ? (<Button onClick={()=>logout()}>Logout</Button>
                     ) : <NavLink className='navBtn' to="/login"><strong>Login</strong></NavLink>}
                 </NavItem>
             

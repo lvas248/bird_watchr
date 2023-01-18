@@ -1,5 +1,5 @@
 import { Button } from 'reactstrap'
-
+import Post from './Post'
 function MyFeed({user}){
 
 
@@ -8,13 +8,18 @@ function MyFeed({user}){
         return <Button key={b.id}>{b.name}</Button>
     })
 
+    const renderPosts = user.posts?.map( p => {
+        return <Post key={p.id} post={p}/>
+    })
  
 
 
     return (
         <div id='myFeed'>
             <div id='sideBar'>{renderBirdBtns}</div>
-            <div id='myPosts'>My Posts</div>
+            <div id='myPosts'>
+                {renderPosts}
+            </div>
         </div>
     )
 }

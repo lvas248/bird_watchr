@@ -3,7 +3,7 @@ class User < ApplicationRecord
     validates :username, presence: true, uniqueness: true
 
     has_many :posts, dependent: :destroy
-    has_many :birds, through: :posts
+    has_many :birds, -> { distinct }, through: :posts
 
 
 end
