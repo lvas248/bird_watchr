@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { Form, Label, Input, Button, FormText, FormGroup, Card, Row, Col} from 'reactstrap'
+import { Form, Label, Input, Button, FormGroup, Card, Row, Col} from 'reactstrap'
 import { useHistory } from 'react-router-dom'
+import { UserContext } from './App'
+import { useContext } from 'react'
 
-function NewPost({birds, user, addPost}){
+function NewPost({birds}){
 
+    const [ user, setUser ] = useContext(UserContext)
     const history = useHistory()
 
     const [ postObj, setPostObj ] = useState({
@@ -59,11 +62,10 @@ function NewPost({birds, user, addPost}){
         })
         .then(res => {
             if(res.ok){
-                res.json().then(data => console.log(data)
-                    // {
-                    // addPost(data)
-                    // history.push('/')
-                // }
+                res.json().then(data => {
+                    setUser({...user, posts: [...user.posts, data]})
+                    history.push('/')
+                }
                 )
             }else{
                 res.json().then(errorData => setErrors(errorData.errors))

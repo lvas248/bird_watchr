@@ -12,8 +12,7 @@ function Post({post}){
 
                 <CardSubtitle tag='p'>Date </CardSubtitle>
                 
-               <CardImg alt='bird' src={post.image_url}></CardImg>
-
+                { post.image_url ? <CardImg alt='bird' src={post.image_url}></CardImg> : null }
                  
                 <CardBody>
                     <CardTitle className='birdName' tag='h5'>{post.bird_name}</CardTitle>
