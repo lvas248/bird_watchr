@@ -63,7 +63,16 @@ function NewPost({birds}){
         .then(res => {
             if(res.ok){
                 res.json().then(data => {
-                    setUser({...user, posts: [...user.posts, data]})
+                    
+                    //create copy of user and add new post
+                    let userCopy = {...user, posts: [...user.posts, data]}
+                    //if user.birds doesn't already contain the new post's bird, add bird to user.
+                    if(user.birds.find( b => b.name === data.bird_name) === undefined){
+                        userCopy = {...userCopy, birds: [...userCopy.birds, data.bird_info]}
+                    }
+                    //update global user
+                    setUser(userCopy)
+                    
                     history.push('/')
                 }
                 )
