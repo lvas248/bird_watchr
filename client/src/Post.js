@@ -38,7 +38,7 @@ function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts}){
 
             <Card className='card'  body>
 
-                <CardSubtitle tag='p'>Date </CardSubtitle>
+                <CardSubtitle tag='p'>{post.date}</CardSubtitle>
                 
                 { post.image_url ? <CardImg alt='bird' src={post.image_url}></CardImg> : null }
                  

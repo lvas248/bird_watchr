@@ -1,23 +1,35 @@
 import { Button } from 'reactstrap'
+import { useState } from 'react'
 import Post from './Post'
 function MyFeed({user, birds, createUniqueUserBirdsFromCurrentPosts}){
 
-
+    const [ sideBarSelection, setSideBarSelection ] = useState({})
 
     const renderUserBirdBtns = user.birds?.map( b => {
-        return <Button key={b.id}>{b.name}</Button>
+        return <Button key={b.id} onClick={()=>setSideBarSelection(b)}>{b.name}</Button>
     })
 
-    const renderPosts = user.posts?.map( p => {
+    const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection.name || '') )
+
+
+    const renderPosts = filteredPosts?.map( p => {
         return <Post key={p.id} post={p} birds={birds} user={user} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}/>
     })
+
  
-
-
     return (
         <div id='myFeed'>
-            <div id='sideBar'>{renderUserBirdBtns}</div>
+            <div id='sideBar'>
+                <Button key={0} onClick={()=> setSideBarSelection({})}>All</Button>
+                {renderUserBirdBtns}
+            </div>
             <div id='myPosts'>
+                { sideBarSelection ? (
+                    <div>
+                        <h2>{sideBarSelection.name}</h2>
+                        <p>{sideBarSelection.description}</p>
+                    </div>
+                ) : null}
                 {renderPosts}
             </div>
         </div>
