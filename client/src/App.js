@@ -4,11 +4,9 @@ import { Switch, Route } from 'react-router-dom'
 import Login from './Login';
 import Signup from './Signup';
 import Navbar from './Navbar';
-import Feed from './Feed';
 import NewPost from './NewPost';
 import MyStuff from './MyStuff';
 import Alert from './Alert';
-import DisplayBird from './DisplayBird';
 import MyFeed from './MyFeed';
 
 

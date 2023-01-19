@@ -1,5 +1,5 @@
 
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button, Label, Input } from 'reactstrap'
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 import React, { useState }  from 'react'
 import EditForm from './EditForm'
 import { UserContext } from './App'
