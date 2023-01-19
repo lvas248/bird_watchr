@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function NewPost({birds}){
+function NewPost({birds, createUniqueUserBirdsFromCurrentPosts}){
 
     const [ user, setUser ] = useContext(UserContext)
     const history = useHistory()
@@ -67,9 +67,7 @@ function NewPost({birds}){
                     //create copy of user and add new post
                     let userCopy = {...user, posts: [...user.posts, data]}
                     //if user.birds doesn't already contain the new post's bird, add bird to user.
-                    if(user.birds.find( b => b.name === data.bird_name) === undefined){
-                        userCopy = {...userCopy, birds: [...userCopy.birds, data.bird_info]}
-                    }
+                    userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
                     //update global user
                     setUser(userCopy)
                     

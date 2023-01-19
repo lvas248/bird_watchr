@@ -43,9 +43,14 @@ function App() {
   const birdsArray = userCopy.posts.map( p => p.bird_info)
       //make it unique
   const birdMap = new Map(birdsArray.map( birdObj => [birdObj['id'], birdObj]))
-  const uniqueBirdsArray = ([...birdMap.values()])
+  const uniqueBirdsArray = ([...birdMap.values()].sort( (a,b) => {
+    if(a.name < b.name) return -1
+    else if(a.name > b.name) return 1
+    else return 0
+  }))
       //update userCopy.birds with unique birds list
   userCopy = {...userCopy, birds: uniqueBirdsArray}
+
   return userCopy
   }
   
@@ -78,7 +83,8 @@ function App() {
 
               {user.username ? (
               <NewPost 
-                birds={birds} />
+                birds={birds}
+                createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
               ):(<Alert />)}
           </Route>
 

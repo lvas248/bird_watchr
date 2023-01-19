@@ -5,7 +5,7 @@ import EditForm from './EditForm'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts}){
+function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts, clearSideBarSelection}){
 
     const [ ,setUser ] = useContext(UserContext)
 
@@ -14,6 +14,7 @@ function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts}){
 
     function clickEditBtn(){
         SetEditClick(!editClick)
+        clearSideBarSelection()
     }
 
     function deletePost(){
@@ -29,6 +30,7 @@ function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts}){
             userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
             //update global user
             setUser(userCopy)
+            clearSideBarSelection()
         })
     }
 

@@ -5,22 +5,25 @@ function MyFeed({user, birds, createUniqueUserBirdsFromCurrentPosts}){
 
     const [ sideBarSelection, setSideBarSelection ] = useState({})
 
+    function clearSideBarSelection(){
+        setSideBarSelection({})
+    }
+
     const renderUserBirdBtns = user.birds?.map( b => {
         return <Button key={b.id} onClick={()=>setSideBarSelection(b)}>{b.name}</Button>
     })
 
     const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection.name || '') )
 
-
     const renderPosts = filteredPosts?.map( p => {
-        return <Post key={p.id} post={p} birds={birds} user={user} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}/>
+        return <Post key={p.id} post={p} birds={birds} user={user} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} clearSideBarSelection={clearSideBarSelection}/>
     })
 
  
     return (
         <div id='myFeed'>
             <div id='sideBar'>
-                <Button key={0} onClick={()=> setSideBarSelection({})}>All</Button>
+                <Button key={0} onClick={clearSideBarSelection}>All</Button>
                 {renderUserBirdBtns}
             </div>
             <div id='myPosts'>
