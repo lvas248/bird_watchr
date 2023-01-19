@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
 
 before_action :authorize
-skip_before_action :authorize, only: :index
     
     def index
         user = get_user
@@ -21,7 +20,8 @@ skip_before_action :authorize, only: :index
     end
 
     def update
-        post = Post.find(params[:id])
+        user = get_user
+        post = user.posts.find(params[:id])
         post.update!(post_params)
         render json: post, status: :ok
     end

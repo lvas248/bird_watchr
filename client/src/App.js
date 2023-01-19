@@ -48,6 +48,17 @@ function App() {
   function removeUser(){
     setUser({})
   }
+  function createUniqueUserBirdsFromCurrentPosts(userCopy){
+  //Get an array of birds used in userCopy.posts, make it unique, update user.birds in global user object 
+      //Array of birds from userCopy.posts
+  const birdsArray = userCopy.posts.map( p => p.bird_info)
+      //make it unique
+  const birdMap = new Map(birdsArray.map( birdObj => [birdObj['id'], birdObj]))
+  const uniqueBirdsArray = ([...birdMap.values()])
+      //update userCopy.birds with unique birds list
+  userCopy = {...userCopy, birds: uniqueBirdsArray}
+  return userCopy
+  }
 
 
   // function updateBirds(deletedPost){
@@ -85,7 +96,7 @@ function App() {
               addCommentToPost={addCommentToPost}      
               deleteCommentFromPosts={deleteCommentFromPosts} 
               />    */}
-              <MyFeed user={user} />
+              <MyFeed user={user} birds={birds} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
           </Route>
 
           <Route path='/new-post'>

@@ -1,81 +1,106 @@
 import React, { useState } from 'react'
+import { CardBody, Label, Input, Button, Card, CardSubtitle, Form, FormGroup, CardImg } from 'reactstrap'
 
-import { CardBody, Label, Input, Button } from 'reactstrap'
+function EditForm({post, birds, clickEditBtn, user, setUser, createUniqueUserBirdsFromCurrentPosts}){
 
-function EditForm({post, birds, clickEdit, updatePost, deletePost}){
+
+    const [ editObj, setEditObj ] = useState({
+            bird_id: post.bird_info.id,
+            location: post.location,
+            caption: post.caption
+    })
 
     const [ errors, setErrors ] = useState([])
 
-    const [ postObj, setPostObj ] = useState({
-        bird_id: post.bird.id,
-        caption: post.caption,
-        id: post.id
-    })
 
-    const renderOptions = birds.map( bird =>{
-        return <option key={bird.name} value={bird.id}>{bird.name}</option>
-    })
-
-    const renderErrors = errors.map( e => {
-        return <p key={e} className='error'>{e}</p>
-    })
-
-    function updatePostObj(key, e){
-        const copy = {...postObj}
-        copy[key] = e.target.value
-        setPostObj(copy)
+    function updateEditObject(key, value){
+        const copy = {...editObj}
+        copy[key] = value
+        setEditObj(copy)
     }
 
-    function submitEdit(e){
+    function submitEditForm(e){
         e.preventDefault()
-        fetch(`/posts/${post.id}`, {
+        fetch(`/posts/${post.id}`,{
             method: 'PATCH',
             headers: {
-                'Content-type':'application/json'
+                'Content-Type':'application/json'
             },
-            body: JSON.stringify(postObj)
+            body: JSON.stringify(editObj)
         })
         .then(res => {
             if(res.ok){
-                res.json().then( data => {
-                    updatePost(data)
-                    clickEdit()
+                res.json().then(editedPost => {
+                    //create copy of global user obj, replace old post with updated post
+                    let userCopy = {...user, posts: user.posts.map( p => {
+                        if(p.id === editedPost.id) return editedPost
+                        else return p
+                    })}
+                    userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
+                    setUser(userCopy)
+                    clickEditBtn()
                 })
             }else{
-                res.json().then( data => setErrors(data.errors))
+                res.json().then(errorData => setErrors(errorData.errors))
             }
-        
         })
     }
 
-    function submitDelete(){
-        fetch(`/posts/${post.id}`,{
-            method: 'DELETE'
-        })
-        .then(res => res.json())
-        .then(data => deletePost(data))
-    }
+
+    const renderBirdOptions = birds.map( b =>{
+        return <option key={b.id} value={b.id}>{b.name}</option>
+    })
+
+    const renderErrors = errors.map( e => {
+        return <p className='error' key={e}>{e}</p>
+    })
+
+
     
-    return (
-        <form onSubmit={submitEdit}>
-            <CardBody>
-                <Label><strong>Bird: </strong></Label>
-                <div>    
-                    <select value={postObj.bird_id} onChange={e=>updatePostObj('bird_id',e)}>{renderOptions}</select>
-                </div>
-                    <Label><strong>Caption: </strong></Label>
-                <div>    
-                    <Input value={postObj.caption} onChange={e=> updatePostObj('caption',e)}/>
-                </div>
-            </CardBody>
-            <CardBody className='btnContainer'>
-                <Button color='success' type='submit'>✔</Button> 
-                <Button color='danger' type='button' onClick={()=>submitDelete()}>X</Button> 
-                <Button type='button' color='warning' onClick={()=>clickEdit()}>Cancel</Button>
-            </CardBody>
-            { errors.length > 0 ? renderErrors : null }
-        </form>
+    return (   
+                <Form onSubmit={submitEditForm}>
+                    <FormGroup>
 
+                        <Label>Bird: </Label>
+                        <Input 
+                            type='select'
+                            value={editObj.bird_id}
+                            onChange={e=>updateEditObject('bird_id', parseInt(e.target.value))}
+                            >{renderBirdOptions}
+                        </Input>
+
+                    </FormGroup>  
+                    <FormGroup>
+
+                        <Label>Location: </Label>
+                        <Input 
+                            value={editObj.location}
+                            onChange={e=>updateEditObject('location', e.target.value)}
+                        />
+
+                    </FormGroup>      
+                    <FormGroup>
+
+                        <Label>Notes: </Label>
+                        <Input 
+                            value={editObj.caption}
+                            onChange={e=>updateEditObject('caption', e.target.value)}
+                        />
+
+                    </FormGroup>       
+                    <FormGroup>
+
+                        <Button>Submit</Button>
+                        <Button 
+                            type='button'
+                            onClick={clickEditBtn}>
+                            Cancel
+                        </Button>
+
+                        { errors.length > 0 ? renderErrors : null }
+
+                    </FormGroup>
+                </Form>
     )
 }
 

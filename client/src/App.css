@@ -271,7 +271,7 @@ a:link{
 
 #sideBar{
   flex-basis: 25%;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   display: flex;
   flex-direction: column;
   overflow-y: auto;
