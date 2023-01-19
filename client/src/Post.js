@@ -25,11 +25,8 @@ function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts}){
         .then(data => {
             //Create copy of user and remove the deleted post from it
             let userCopy = {...user, posts: user.posts.filter( p => p.id !== data.id)}
-            //delete bird from user.birds (if) user.posts does not contain other posts with deletedpost's bird
-            const filteredPosts = userCopy.posts.filter( p => p.bird_info.id === data.bird_info.id)
-            if( filteredPosts.length < 1){
-                userCopy = {...userCopy, birds: [...userCopy.birds.filter( b=> b.id !== data.bird_info.id)]}
-            }
+            //update userCopy.birds list
+            userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
             //update global user
             setUser(userCopy)
         })
