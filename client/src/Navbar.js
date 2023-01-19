@@ -46,7 +46,7 @@ function Navbar(){
 
                 </NavItem>
 
-{/* 
+
                 <NavItem>
 
                     <NavLink 
@@ -54,7 +54,7 @@ function Navbar(){
                        <strong>My Stuff</strong>
                     </NavLink>
 
-                </NavItem> */}
+                </NavItem>
 
 
                 <NavItem>

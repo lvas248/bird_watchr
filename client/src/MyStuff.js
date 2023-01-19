@@ -1,51 +1,51 @@
-import { Card, CardBody } from 'reactstrap'
-import { Switch, Route, NavLink } from 'react-router-dom'
+import { Card, CardBody, Button } from 'reactstrap'
+import { useState } from 'react'
+import ProfileEditForm from './ProfileEditForm'
+import { useHistory } from 'react-router-dom'
+import { useContext } from 'react'
+import { UserContext } from './App'
 
-import Profile from './Profile'
-import Feed from './Feed'
+function MyStuff(){
 
-function MyStuff({user, posts, birds, updatePost, deletePost, addLikeToPosts, removeLikeFromPosts, addCommentToPost, deleteCommentFromPosts, updateUsername, removeDeletedUserPosts}){
-
-    const userPosts = posts.filter( post => post.user.id === user.id)
-
+    const [ user, setUser ] = useContext(UserContext)
     
-    const renderMyBirds = user.birds.map( b =>{
-        return <p key={b.id}>{b.name}</p>
-    })
+    const history = useHistory()
+    
+    const [ editClick, setEditClick ] = useState(false)
+
+    function clickEdit(){
+        setEditClick(!editClick)
+    }
+
+    function deleteAccount(){
+        fetch('/users/:id',{
+            method: 'DELETE'
+        })
+        .then( res => {
+            if(res.ok){
+                res.json().then(data => {
+                    setUser({})
+                    history.push('/login')
+                })}})
+    }
     
     return (
-        <Card id='myStuffContainer'>
-            <CardBody className='leftPanel'>
-                    <NavLink className='navItem' to='/my-stuff/posts'>My Posts</NavLink>
-                    <NavLink className='navItem' to='/my-stuff/profile'>Profile Settings</NavLink>
+        <Card>
+            <CardBody id='profilePanel'>
+
+            { editClick ? (
+                <ProfileEditForm clickEdit={clickEdit} user={user} setUser={setUser} />
+            ):(   
+                <>
+                    <div id='usernamePanel'>
+                        <h2>{user.username}</h2>       
+                        <Button color='primary' size='sm' onClick={clickEdit}>Edit Username</Button>       
+                    </div>
+                    <Button color='danger' onClick={deleteAccount}>Delete Account</Button>
+                </>)
+            }
+
             </CardBody>
-            <div id='rightPanel'>
-                <Switch>
- 
-                    <Route exact path='/my-stuff/posts'>
-                        <div id='myBirdDiv'>
-                            <h4>My Birds: </h4>
-                            {renderMyBirds}
-                        </div>
-                        <Feed className='switchContainer'
-                            posts={ userPosts} 
-                            user={user} 
-                            birds={birds} 
-                            updatePost={updatePost} 
-                            deletePost={deletePost} 
-                            addLikeToPosts={addLikeToPosts} 
-                            removeLikeFromPosts={removeLikeFromPosts}
-                            addCommentToPost={addCommentToPost}      
-                            deleteCommentFromPosts={deleteCommentFromPosts} 
-                         />   
-                    </Route>
-
-                    <Route path='/my-stuff/profile'>
-                        <Profile user={user} removeDeletedUserPosts={removeDeletedUserPosts} updateUsername={updateUsername} />
-                    </Route>
-
-                </Switch>
-            </div>
         </Card>
     )
 }

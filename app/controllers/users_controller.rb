@@ -13,13 +13,14 @@ class UsersController < ApplicationController
     end
 
     def update
-        user = User.find(params[:id])
+        user = User.find(session[:user_id])
         user.update!(user_params)
         render json: user, status: :ok
     end
 
     def destroy
-        user = User.find(params[:id])
+        user = User.find(session[:user_id])
+        session.delete :user_id
         user.destroy
         render json: user, status: :ok
     end
@@ -28,6 +29,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.permit(:username, :password, :password_confirmation, :id, :username)
+        params.permit(:username, :password, :password_confirmation, :username)
     end
 end

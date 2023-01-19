@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CardBody, Label, Input, Button, Card, CardSubtitle, Form, FormGroup, CardImg } from 'reactstrap'
+import { CardBody, Label, Input, Button, Form, FormGroup } from 'reactstrap'
 
 function EditForm({post, birds, clickEditBtn, user, setUser, createUniqueUserBirdsFromCurrentPosts}){
 

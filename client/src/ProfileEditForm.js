@@ -1,10 +1,13 @@
 import { Input, Button } from 'reactstrap'
 import React, { useState } from 'react'
 
-function ProfileEditForm({clickEdit, user, updateUsername}){
+function ProfileEditForm({user, setUser, clickEdit}){
+
 
     const [ inputText, setInputText ] = useState(user.username)
     const [ errors, setErrors ] = useState([])
+
+
 
     const renderErrors = errors.map( e => {
         return <p key={e} className='error'>{e}</p>
@@ -12,7 +15,7 @@ function ProfileEditForm({clickEdit, user, updateUsername}){
 
     function submitNameChange(e){
         e.preventDefault()
-        fetch(`/users/${user.id}`,{
+        fetch(`/users/:id`,{
             method: 'PATCH',
             headers:{
                 'Content-Type': 'application/json'
@@ -25,7 +28,7 @@ function ProfileEditForm({clickEdit, user, updateUsername}){
             if(res.ok){
                 res.json()  
                 .then(data => {
-                    updateUsername(data)
+                    setUser({...user, username: data.username})
                     clickEdit()
                 })
             }else{

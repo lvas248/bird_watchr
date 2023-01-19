@@ -88,25 +88,13 @@ function App() {
               ):(<Alert />)}
           </Route>
 
-          {/* <Route path='/my-stuff'> */}
+          <Route path='/my-stuff'>
 
-            {/* {user.username ? (
-                  <MyStuff 
-                    user={user}
-                    posts={posts}
-                    birds={birds} 
-                    updatePost={updatePost} 
-                    deletePost={deletePost} 
-                    addLikeToPosts={addLikeToPosts} 
-                    removeLikeFromPosts={removeLikeFromPosts}
-                    addCommentToPost={addCommentToPost}      
-                    deleteCommentFromPosts={deleteCommentFromPosts} 
-                    updateUsername={updateUsername}
-                    removeDeletedUserPosts={removeDeletedUserPosts}
-                  />
+            {user.username ? (
+                  <MyStuff user={user} />
                 ):(<Alert />)}
   
-          </Route> */}
+          </Route> 
 
           <Route  path='/login'>
             <Login updateUser={updateUser}/>          
@@ -114,13 +102,7 @@ function App() {
 
           <Route path='/signup'>
             <Signup updateUser={updateUser}/>          
-          </Route>
-
-{/* 
-          <Route path='/display-bird/:id'>
-            <DisplayBird birds={birds}/>
-          </Route> */}
-          
+          </Route>          
 
         </Switch>
       </div>
