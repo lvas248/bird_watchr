@@ -8,7 +8,6 @@ import Feed from './Feed';
 import NewPost from './NewPost';
 import MyStuff from './MyStuff';
 import Alert from './Alert';
-import AddBird from './AddBird';
 import DisplayBird from './DisplayBird';
 import MyFeed from './MyFeed';
 
@@ -18,16 +17,8 @@ export const UserContext = React.createContext()
 function App() {
 
   const [ user, setUser ] = useState({})
-  const [ posts, setPosts ] = useState([{}])
   const [ birds, setBirds ] = useState([])
 
-  // useEffect(()=>{
-  //   fetch('/posts')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     setPosts(data)    
-  //   })
-  // },[])
 
   useEffect(()=>{
     fetch('/birds')
@@ -45,9 +36,7 @@ function App() {
   function updateUser(userObj){
     setUser(userObj)
   }
-  function removeUser(){
-    setUser({})
-  }
+
   function createUniqueUserBirdsFromCurrentPosts(userCopy){
   //Get an array of birds used in userCopy.posts, make it unique, update user.birds in global user object 
       //Array of birds from userCopy.posts
@@ -59,20 +48,6 @@ function App() {
   userCopy = {...userCopy, birds: uniqueBirdsArray}
   return userCopy
   }
-
-
-  // function updateBirds(deletedPost){
-  //   console.log(deletedPost)
-  //    // if user.posts contains 1 post with the delete bird, delete bird from user.birds
-  //   const filteredPosts = user.posts.filter(p => p.bird_name === deletedPost.bird_name)
-  //   console.log(filteredPosts)
-  //   if(filteredPosts.length === 1){
-  //     setBirds([...birds.filter( b => b.name !== deletedPost.bird_name)])
-  //   }
-  // }
-
-  
-
   
   return (
     <UserContext.Provider value={ [user, setUser] }>
