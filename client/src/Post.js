@@ -4,7 +4,7 @@ import React  from 'react'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function Post({post}){
+function Post({post, }){
 
     const [ user,setUser ] = useContext(UserContext)
 
@@ -15,7 +15,15 @@ function Post({post}){
         })
         .then(res => res.json())
         .then(data => {
-            setUser({...user, posts: user.posts.filter( p => p.id !== data.id)})
+            //Create copy of user and remove the deleted post from it
+            let userCopy = {...user, posts: user.posts.filter( p => p.id !== data.id)}
+            //delete bird from user.birds (if) user.posts does not contain posts with deletedpost's bird
+            const filteredPosts = userCopy.posts.filter( p => p.bird_name === data.bird_name)
+            if( filteredPosts.length < 1){
+                userCopy = {...userCopy, birds: [...userCopy.birds.filter( b=> b.name !== data.bird_name)]}
+            }
+            //update global user
+            setUser(userCopy)
         })
     }
 

@@ -9,7 +9,7 @@ function MyFeed({user}){
     })
 
     const renderPosts = user.posts?.map( p => {
-        return <Post key={p.id} post={p}/>
+        return <Post key={p.id} post={p} />
     })
  
 
