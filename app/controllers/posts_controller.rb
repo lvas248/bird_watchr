@@ -27,7 +27,8 @@ skip_before_action :authorize, only: :index
     end
 
     def destroy
-        post = Post.find(params[:id])
+        user = get_user
+        post = user.posts.find(params[:id])
         post.destroy
         render json: post, status: :ok
     end

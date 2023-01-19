@@ -1,8 +1,23 @@
 
 import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button } from 'reactstrap'
 import React  from 'react'
+import { UserContext } from './App'
+import { useContext } from 'react'
 
 function Post({post}){
+
+    const [ user,setUser ] = useContext(UserContext)
+
+    function deletePost(){
+
+        fetch(`/posts/${post.id}`, {
+            method: 'DELETE'
+        })
+        .then(res => res.json())
+        .then(data => {
+            setUser({...user, posts: user.posts.filter( p => p.id !== data.id)})
+        })
+    }
 
 
     return (
@@ -22,7 +37,7 @@ function Post({post}){
                         
                 <CardBody>
                     <Button>Edit</Button>
-                    <Button>Delete</Button>
+                    <Button onClick={deletePost}>Delete</Button>
                 </CardBody>
 
             
