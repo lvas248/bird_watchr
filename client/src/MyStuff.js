@@ -1,9 +1,9 @@
 import { Card, CardBody, Button } from 'reactstrap'
 import { useState } from 'react'
-import ProfileEditForm from './ProfileEditForm'
 import { useHistory } from 'react-router-dom'
 import { useContext } from 'react'
 import { UserContext } from './App'
+import ProfileEditForm from './ProfileEditForm'
 
 function MyStuff(){
 
@@ -25,7 +25,7 @@ function MyStuff(){
             if(res.ok){
                 res.json().then(data => {
                     setUser({})
-                    history.push('/login')
+                    history.push('/')
                 })}})
     }
     

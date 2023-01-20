@@ -289,3 +289,12 @@ a:link{
   text-align: left;
   background-color: lightgray;
 }
+
+.btnCtn{
+  display: flex;
+}
+
+.fltrBtn{
+  flex-basis: 80%;
+  margin-right: 2px;
+}

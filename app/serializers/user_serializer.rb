@@ -3,4 +3,7 @@ class UserSerializer < ActiveModel::Serializer
   
   has_many :birds
   has_many :posts
+
+
+
 end

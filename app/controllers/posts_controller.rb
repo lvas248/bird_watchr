@@ -33,6 +33,12 @@ before_action :authorize
         render json: post, status: :ok
     end
 
+    def destroy_bird_posts
+        user = get_user
+        user.posts.where("bird_id = #{params[:id]}").destroy_all
+        head :no_content
+    end
+
 
 
     private

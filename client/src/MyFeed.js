@@ -1,7 +1,7 @@
 import { Button } from 'reactstrap'
 import { useState } from 'react'
 import Post from './Post'
-function MyFeed({user, birds, createUniqueUserBirdsFromCurrentPosts}){
+function MyFeed({user, setUser, birds, createUniqueUserBirdsFromCurrentPosts}){
 
     const [ sideBarSelection, setSideBarSelection ] = useState({})
 
@@ -9,8 +9,23 @@ function MyFeed({user, birds, createUniqueUserBirdsFromCurrentPosts}){
         setSideBarSelection({})
     }
 
+    function deleteUserBird(id){
+        //create delete fetch request that deletes any of the user's posts that are associated with a specific bird
+        fetch(`/bird-posts/${id}`,{
+            method: 'DELETE'
+        })
+        // In global user obj, delete all posts with specific bird, delete the bird from user.birds
+        let userCopy = {...user, birds: user.birds.filter( b => b.id !== id)}
+        userCopy = {...userCopy, posts: userCopy.posts.filter( p => p.bird_info.id !== id) }
+        setUser(userCopy)
+        setSideBarSelection({})
+    }
+
     const renderUserBirdBtns = user.birds?.map( b => {
-        return <Button key={b.id} onClick={()=>setSideBarSelection(b)}>{b.name}</Button>
+        return  <div className='btnCtn' key={b.id}>
+                    <Button className='fltrBtn' onClick={()=>setSideBarSelection(b)}>{b.name}</Button>
+                    <Button onClick={()=>deleteUserBird(b.id)}>x</Button>
+                </div>
     })
 
     const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection.name || '') )

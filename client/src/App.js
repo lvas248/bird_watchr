@@ -65,7 +65,7 @@ function App() {
           <Route exact path='/'>
 
           {user.username ? (
-            <MyFeed user={user} birds={birds} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
+            <MyFeed user={user} setUser={setUser} birds={birds} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
               ):(<Login updateUser={updateUser} />)}
           </Route>
           
@@ -81,10 +81,6 @@ function App() {
               ):(<Login updateUser={updateUser}/>)}
           </Route>
 
-
-
-
-
           <Route path='/my-stuff'>
 
             {user.username ? (
@@ -93,13 +89,11 @@ function App() {
   
           </Route> 
 
-          {/* <Route  path='/login'>
-            <Login updateUser={updateUser}/>          
-          </Route> */}
-
           <Route path='/signup'>
+
             <Signup updateUser={updateUser}/>          
           </Route>          
+          
 
         </Switch>
       </div>

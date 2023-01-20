@@ -6,8 +6,6 @@ class BirdsController < ApplicationController
 
 
 
-
-
     private
 
     def bird_params

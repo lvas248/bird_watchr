@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :comments, only: [:index, :create, :destroy]
   resources :birds, only: [:index, :create]
-  resources :likes, only: [:index, :destroy, :create]
   resources :posts
 
   delete '/users/:id', to: 'users#destroy'
@@ -15,6 +13,7 @@ Rails.application.routes.draw do
 
   post '/post+bird', to: 'posts#create_post_and_bird'
 
+  delete '/bird-posts/:id', to: 'posts#destroy_bird_posts'
 
   post '/login', to: 'sessions#create'
 
