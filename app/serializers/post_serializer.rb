@@ -9,5 +9,6 @@ class PostSerializer < ActiveModel::Serializer
     object.created_at.strftime('%A - %b %d, %Y')
   end
 
- 
+
+
 end

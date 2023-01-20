@@ -6,4 +6,10 @@ class Post < ApplicationRecord
 
   validates :location, presence: true
   validates :caption, presence: true
+
+
+
+
+  
+
 end

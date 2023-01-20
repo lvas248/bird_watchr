@@ -34,7 +34,7 @@
 
 .card {
   width: 100%;
-  margin: auto auto;
+  margin: 2% auto;
   background-color: rgb(251, 251, 251);
   text-align: left;
 }
@@ -43,9 +43,7 @@
   width: 40%;
 }
 
-.card-text {
-  margin-top: 15px;
-}
+
 
 .feed{
   display: grid;
@@ -145,14 +143,6 @@ a:link{
   gap: 1%;
 }
 
-#rightPanel{
-  padding: 1%;
-  width: 100%;
-  max-height: 100%;
-  flex-basis: 85%;
-  background-color: white;
-
-}
 
 .navItem {
   border-radius: 25px;
@@ -161,7 +151,6 @@ a:link{
 #profilePanel{
   height: 33%;
   background-color: rgb(240, 240, 240);
-  justify-content: center;
 }
 
 #profilePanel > * {
@@ -180,8 +169,8 @@ a:link{
   padding: 5%;
 }
 
-.birdName:hover{
-  cursor: pointer;
+.birdName{
+  color: darkgreen;
 }
 
 
@@ -213,12 +202,7 @@ a:link{
   .card.card-body{
     width: 100%;
   }
-  .feed{
-    padding: 0px;
-    overflow: auto;
-    /* height: auto; */
-  }
-
+  
   #displayDiv{
     display: block;
     padding: 2%;
@@ -282,11 +266,19 @@ a:link{
 
 #myPosts{
   flex-basis: 75%;
-  background-color: lightcyan;
   overflow-y: auto;
 
 }
 #postForm{
   height: 82vh;
   overflow-y: auto;
+}
+
+.date{
+  color: darkgreen;
+}
+
+#textBox{
+  padding: 2%;
+  margin: 5% auto;
 }
