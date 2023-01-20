@@ -67,7 +67,7 @@ function Signup({updateUser}){
             </Form>
 
             { errors.length > 0 ? renderErrors : null}
-            <NavLink to='/login'>Back to Login</NavLink>
+            <NavLink to='/'>Back to Login</NavLink>
 
 
         </div>

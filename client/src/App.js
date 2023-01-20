@@ -63,19 +63,14 @@ function App() {
         <Switch>
 
           <Route exact path='/'>
-            {/* <Feed 
-              posts={posts} 
-              user={user} 
-              birds={birds} 
-              updatePost={updatePost} 
-              deletePost={deletePost} 
-              addLikeToPosts={addLikeToPosts} 
-              removeLikeFromPosts={removeLikeFromPosts}
-              addCommentToPost={addCommentToPost}      
-              deleteCommentFromPosts={deleteCommentFromPosts} 
-              />    */}
-              <MyFeed user={user} birds={birds} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
+
+          {user.username ? (
+            <MyFeed user={user} birds={birds} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
+              ):(<Login updateUser={updateUser} />)}
           </Route>
+          
+
+
 
           <Route path='/new-post'>
 
@@ -83,20 +78,24 @@ function App() {
               <NewPost 
                 birds={birds}
                 createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
-              ):(<Alert />)}
+              ):(<Login updateUser={updateUser}/>)}
           </Route>
+
+
+
+
 
           <Route path='/my-stuff'>
 
             {user.username ? (
                   <MyStuff user={user} />
-                ):(<Alert />)}
+                ):(<Login updateUser={updateUser}/>)}
   
           </Route> 
 
-          <Route  path='/login'>
+          {/* <Route  path='/login'>
             <Login updateUser={updateUser}/>          
-          </Route>
+          </Route> */}
 
           <Route path='/signup'>
             <Signup updateUser={updateUser}/>          

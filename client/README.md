@@ -1,34 +1,27 @@
 
 # Bird Watcher
 
-Bird Watcher is a social media app where you can create content and connect with others about your favorite birds.
+Bird Watcher is a diary app where you can post pics and jot down notes about the interesting birds you come across.
+
 ## Description
-When the page initially loads, the feed component is rendered to the page.  Here the user can only view content posted by other users in the app. 
+When the page initially loads, the user is directed to the Log in or Signup component where they will have to login or signup for an account.  They can do so by clicking on the 'Login' button in the nav bar, and then either entering in the username and password, or selecting the signup button to create a new account.  
 
-![Alt Text](media/1.gif)
+![Alt Text](media/login.gif)
 
-In order to interact with the content and create their own content, the user will have to login or signup for an account.  They can do so by clicking on the 'Login' button in the nav bar, and then either entering in the username and password, or selecting the signup button to create a new account.  
+My Posts:  Within this feed, the user can view all of the posts and notes that they have left in the past.  They can filter through their past posts by clicking on a 'My Birds' filter button on the left side to view all of their posts about a specific type of bird. They can also edit or delete a post from this component.
 
-![Alt Text](media/2.gif)
+![Alt Text](media/myposts.gif)
 
-Feed:  Within the feed, the user can view all of the content on the app and either like or leave a comment via the buttons at the bottom of the posts.  If the post belongs to the current user, a third button will appear that will allow the user to edit or delete the post.
 
-![Alt Text](media/3.gif)
+New Post: Within this component, the user can create a post by either selecting a bird from the dropdown menu or creating a new bird. They can then enter in a location, image_url, and caption to complete the post.
 
-![Alt Text](media/4.gif)
+![Alt Text](media/newpost.gif)
 
-Post: Within the post component, the user can create a post by selecting a bird in the dropdown menu, entering in an image URL, and writing a caption.
 
-![Alt Text](media/5.gif)
 
-If the bird is not listed in the dropdown menu, the user can add one by filling out the add bird form.  Filling out this form adds a bird to the list and creates a bird information card for other users that select the same bird when creating their own posts.
+My Stuff: This component allows the user to edit/change their username and delete their account.  Once an account is deleted, all of the users posts will also be deleted.
 
-![Alt Text](media/6.gif)
-
-My Stuff: This component allows the user to view, edit, or delete any of their own posts.
-It also allows the user to change their username and delete their account.  Once an account is deleted, all of the users posts and comments will also be deleted.
-
-![Alt Text](media/7.gif)
+![Alt Text](media/mystuff.gif)
 
 
 ## License

@@ -27,8 +27,8 @@ function MyFeed({user, birds, createUniqueUserBirdsFromCurrentPosts}){
                 {renderUserBirdBtns}
             </div>
             <div id='myPosts'>
-                { sideBarSelection ? (
-                    <div>
+                { sideBarSelection.id ? (
+                    <div id='infoBox'>
                         <h2>{sideBarSelection.name}</h2>
                         <p>{sideBarSelection.description}</p>
                     </div>

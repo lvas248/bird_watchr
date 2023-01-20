@@ -14,7 +14,6 @@ function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts, clearSi
 
     function clickEditBtn(){
         SetEditClick(!editClick)
-        clearSideBarSelection()
     }
 
     function deletePost(){

@@ -33,17 +33,17 @@ function MyStuff(){
         <Card>
             <CardBody id='profilePanel'>
 
-            { editClick ? (
-                <ProfileEditForm clickEdit={clickEdit} user={user} setUser={setUser} />
-            ):(   
-                <>
-                    <div id='usernamePanel'>
-                        <h2>{user.username}</h2>       
-                        <Button color='primary' size='sm' onClick={clickEdit}>Edit Username</Button>       
-                    </div>
-                    <Button color='danger' onClick={deleteAccount}>Delete Account</Button>
-                </>)
-            }
+                { editClick ? (
+                    <ProfileEditForm clickEdit={clickEdit} user={user} setUser={setUser} />
+                ):(   
+                    <>
+                        <div id='usernamePanel'>
+                            <h2>{user.username}</h2>       
+                            <Button color='primary' size='sm' onClick={clickEdit}>Edit Username</Button>       
+                        </div>
+                        <Button color='danger' onClick={deleteAccount}>Delete Account</Button>
+                    </>)
+                }
 
             </CardBody>
         </Card>

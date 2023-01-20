@@ -14,7 +14,7 @@ function Navbar(){
             method: 'DELETE'
         })
         setUser({})
-        history.push('/login')
+        history.push('/')
     }
 
     return(
@@ -56,12 +56,9 @@ function Navbar(){
 
                 </NavItem>
 
-
-                <NavItem>
-                    { user.username ? (<Button onClick={()=>logout()}>Logout</Button>
-                    ) : <NavLink className='navBtn' to="/login"><strong>Login</strong></NavLink>}
-                </NavItem>
-            
+                { user.username ? <Button onClick={()=>logout()}>Logout</Button> : null}
+               
+        
             </Nav>            
         </div>
 

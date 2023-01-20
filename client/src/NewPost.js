@@ -65,7 +65,7 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts}){
                 res.json().then(data => {
                     
                     //create copy of user and add new post
-                    let userCopy = {...user, posts: [...user.posts, data]}
+                    let userCopy = {...user, posts: [data, ...user.posts]}
                     //if user.birds doesn't already contain the new post's bird, add bird to user.
                     userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
                     //update global user
