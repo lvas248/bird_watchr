@@ -13,7 +13,7 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts}){
         location:'',
         caption: '',
         image_url: '',
-        bird_id: '', 
+        bird_id: 0, 
         bird_attributes: {
             name: '',
             description: ''            
@@ -36,13 +36,18 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts}){
             location:'',
             caption: '',
             image_url: '',
-            bird_id: '', 
+            bird_id: 0, 
             bird_attributes: {
                 name: '',
                 description: ''            
             }
         })
         
+    }
+
+    function changeSelect(value){
+        setSelect(value)
+        resetPostObj()
     }
 
     function updateNestedBirdAttribbutes(key, value){
@@ -53,7 +58,7 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts}){
 
     function submitNewPost(e){
         e.preventDefault()
-        fetch( select ? '/posts' : '/post+bird',{
+        fetch('/posts',{
             method: 'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -106,12 +111,12 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts}){
                                     <Label>Bird: </Label>
                                 
                                     <div>
-                                        <Input type='radio' name='bird' checked={select} onChange={()=>setSelect(true)}/>
+                                        <Input type='radio' name='bird' checked={select} onChange={()=>changeSelect(true)}/>
                                         <Label >Select</Label>
                                     </div>
 
                                     <div>
-                                        <Input type="radio" name='bird' onChange={()=>setSelect(false)}/>
+                                        <Input type="radio" name='bird' onChange={()=>changeSelect(false)}/>
                                         <Label >Create New</Label>
                                     </div>
 

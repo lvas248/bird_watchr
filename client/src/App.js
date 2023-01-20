@@ -6,7 +6,7 @@ import Signup from './Signup';
 import Navbar from './Navbar';
 import NewPost from './NewPost';
 import MyStuff from './MyStuff';
-import Alert from './Alert';
+// import Alert from './Alert';
 import MyFeed from './MyFeed';
 
 

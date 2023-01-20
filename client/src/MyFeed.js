@@ -31,7 +31,12 @@ function MyFeed({user, setUser, birds, createUniqueUserBirdsFromCurrentPosts}){
     const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection.name || '') )
 
     const renderPosts = filteredPosts?.map( p => {
-        return <Post key={p.id} post={p} birds={birds} user={user} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} clearSideBarSelection={clearSideBarSelection}/>
+        return <Post 
+                key={p.id} post={p} 
+                birds={birds} 
+                user={user} 
+                createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} 
+                clearSideBarSelection={clearSideBarSelection}/>
     })
 
  
