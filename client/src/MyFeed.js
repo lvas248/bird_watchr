@@ -26,14 +26,14 @@ function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
         setSideBarSelection({})
     }
 
-    const renderUserBirdBtns = user.birds?.map( b => {
+    const renderUserBirdBtns = user?.birds.map( b => {
         return  <div className='btnCtn' key={b.id}>
                     <Button className='fltrBtn' onClick={()=>setSideBarSelection(b)}>{b.name}</Button>
                     <Button onClick={()=>deleteUserBird(b.id)}>x</Button>
                 </div>
     })
 
-    const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection?.name || '') )
+    const filteredPosts = user?.posts.filter( p => p.bird_info.name.includes(sideBarSelection?.name || '') )
 
     const sortedPosts = filteredPosts?.sort((a,b) => b.id - a.id )
    

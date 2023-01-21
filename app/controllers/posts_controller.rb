@@ -13,15 +13,12 @@ before_action :authorize
         render json: post, status: :created
     end
 
-
     def update
         user = get_user
         post = user.posts.find(params[:id])
         post.update!(post_params)
         render json: post, status: :ok
     end
-
-
 
     def destroy
         user = get_user
@@ -42,8 +39,6 @@ before_action :authorize
         params.require(:post).permit(:id, :location, :caption, :bird_id, :image_url, bird_attributes: [:name, :description])
     end
 
- 
-
     def authorize
         render json: { error: "Sign in to interact"}, status: :unauthorized unless
         session.include? :user_id
@@ -52,4 +47,5 @@ before_action :authorize
     def get_user
         User.find(session[:user_id])
     end
+    
 end

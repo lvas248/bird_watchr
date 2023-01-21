@@ -38,7 +38,7 @@ function MyStuff(){
                 ):(   
                     <>
                         <div id='usernamePanel'>
-                            <h2>{user.username}</h2>       
+                            <h2>{user?.username}</h2>       
                             <Button color='primary' size='sm' onClick={clickEdit}>Edit Username</Button>       
                         </div>
                         <Button color='danger' onClick={deleteAccount}>Delete Account</Button>
