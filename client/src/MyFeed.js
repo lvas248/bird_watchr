@@ -1,8 +1,13 @@
 import { Button } from 'reactstrap'
 import { useState } from 'react'
+import { UserContext } from './App'
+import { useContext } from 'react'
 import Post from './Post'
-function MyFeed({user, setUser, birds, createUniqueUserBirdsFromCurrentPosts}){
 
+
+function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
+
+    const [ user, setUser ] = useContext(UserContext)
     const [ sideBarSelection, setSideBarSelection ] = useState({})
 
     function clearSideBarSelection(){
@@ -30,11 +35,12 @@ function MyFeed({user, setUser, birds, createUniqueUserBirdsFromCurrentPosts}){
 
     const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection.name || '') )
 
-    const renderPosts = filteredPosts?.map( p => {
+    const sortedPosts = filteredPosts?.sort((a,b) => b.id - a.id )
+   
+    const renderPosts = sortedPosts?.map( p => {
         return <Post 
                 key={p.id} post={p} 
                 birds={birds} 
-                user={user} 
                 createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} 
                 clearSideBarSelection={clearSideBarSelection}/>
     })
@@ -43,6 +49,7 @@ function MyFeed({user, setUser, birds, createUniqueUserBirdsFromCurrentPosts}){
     return (
         <div id='myFeed'>
             <div id='sideBar'>
+                <h3>My Birds</h3>
                 <Button key={0} onClick={clearSideBarSelection}>All</Button>
                 {renderUserBirdBtns}
             </div>

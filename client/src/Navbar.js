@@ -13,7 +13,7 @@ function Navbar(){
         fetch('/logout',{
             method: 'DELETE'
         })
-        setUser({})
+        setUser(null)
         history.push('/')
     }
 
@@ -56,7 +56,7 @@ function Navbar(){
 
                 </NavItem>
 
-                { user.username ? <Button onClick={()=>logout()}>Logout</Button> : null}
+                { user ? <Button onClick={()=>logout()}>Logout</Button> : null}
                
         
             </Nav>            

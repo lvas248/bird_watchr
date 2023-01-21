@@ -14,7 +14,7 @@ export const UserContext = React.createContext()
 
 function App() {
 
-  const [ user, setUser ] = useState({})
+  const [ user, setUser ] = useState(null)
   const [ birds, setBirds ] = useState([])
 
 
@@ -26,31 +26,53 @@ function App() {
 
   useEffect(()=>{
     fetch('/me')
-    .then(res => res.json())
-    .then(data => setUser(data))
+    .then(res => {
+      if(res.ok){
+        res.json().then(data => setUser(data))
+      }
+    })
   },[])
-
+      
 
   function updateUser(userObj){
     setUser(userObj)
   }
 
-  function createUniqueUserBirdsFromCurrentPosts(userCopy){
-  //Get an array of birds used in userCopy.posts, make it unique, update user.birds in global user object 
-      //Array of birds from userCopy.posts
-  const birdsArray = userCopy.posts.map( p => p.bird_info)
-      //make it unique
-  const birdMap = new Map(birdsArray.map( birdObj => [birdObj['id'], birdObj]))
-  const uniqueBirdsArray = ([...birdMap.values()].sort( (a,b) => {
-    if(a.name < b.name) return -1
-    else if(a.name > b.name) return 1
-    else return 0
-  }))
-      //update userCopy.birds with unique birds list
-  userCopy = {...userCopy, birds: uniqueBirdsArray}
-
-  return userCopy
+  function createUniqueBirdsArray(birdsArray){
+    //takes an array of birds with duplicates and returns a unique array, alphebatized
+      //create a unique array of birds using Map dataset
+    const birdMap = new Map(birdsArray.map( birdObj => [birdObj['id'], birdObj]))
+    let updatedBirds =  [...birdMap.values()]
+      //alphabetize array by bird name
+    updatedBirds = ([...birdMap.values()].sort( (a,b) => {
+      if(a.name < b.name) return -1
+      else if(a.name > b.name) return 1
+      else return 0
+    }))
+  return updatedBirds
   }
+
+  function createUniqueUserBirdsFromCurrentPosts(userObj){
+    //Takes in the userObj, grabs all of the bird objs used in user.posts, creates unique array of bird objs and sets as user.birds
+      //Grab birdObjs from user.posts
+    const birdsArray = userObj.posts.map( p => p.bird_info)
+      //make it unique
+    const uniqueBirds = createUniqueBirdsArray(birdsArray)
+      //update userCopy.birds with unique birds list, return newly updated userObj
+    return {...userObj, birds: uniqueBirds}
+
+  }
+
+  function updateBirdsList(newBirdObj){
+    const birdsList = [...birds, newBirdObj]
+    setBirds(createUniqueBirdsArray(birdsList))
+
+  }
+
+
+
+
+
   
   return (
     <UserContext.Provider value={ [user, setUser] }>
@@ -64,9 +86,12 @@ function App() {
 
           <Route exact path='/'>
 
-          {user.username ? (
-            <MyFeed user={user} setUser={setUser} birds={birds} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
-              ):(<Login updateUser={updateUser} />)}
+          {user ? (
+            <MyFeed 
+              birds={birds} 
+              createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}/>
+          ):(
+            <Login updateUser={updateUser} />)}
           </Route>
           
 
@@ -74,16 +99,17 @@ function App() {
 
           <Route path='/new-post'>
 
-              {user.username ? (
+              {user ? (
               <NewPost 
                 birds={birds}
-                createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} />
+                createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}
+                updateBirdsList={updateBirdsList} />
               ):(<Login updateUser={updateUser}/>)}
           </Route>
 
           <Route path='/my-stuff'>
 
-            {user.username ? (
+            {user ? (
                   <MyStuff user={user} />
                 ):(<Login updateUser={updateUser}/>)}
   

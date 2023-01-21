@@ -5,9 +5,9 @@ import EditForm from './EditForm'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts, clearSideBarSelection}){
+function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarSelection}){
 
-    const [ ,setUser ] = useContext(UserContext)
+    const [ user,setUser ] = useContext(UserContext)
 
     const [ editClick, SetEditClick ] = useState(false)
 
@@ -17,7 +17,6 @@ function Post({post, birds, user, createUniqueUserBirdsFromCurrentPosts, clearSi
     }
 
     function deletePost(){
-
         fetch(`/posts/${post.id}`, {
             method: 'DELETE'
         })

@@ -7,11 +7,12 @@ class Post < ApplicationRecord
 
   validates :location, presence: true
   validates :caption, presence: true
- 
+
+
 
   def bird_attributes=(bird_attributes)
-    if !self.bird
-      self.bird = Bird.create!(bird_attributes)
+    if !self.bird && ( bird_attributes[:name] != '' && bird_attributes[:description] != '')
+      self.bird = Bird.create(bird_attributes)
     end
   end
 
