@@ -8,10 +8,10 @@ import Post from './Post'
 function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
 
     const [ user, setUser ] = useContext(UserContext)
-    const [ sideBarSelection, setSideBarSelection ] = useState({})
+    const [ sideBarSelection, setSideBarSelection ] = useState(null)
 
     function clearSideBarSelection(){
-        setSideBarSelection({})
+        setSideBarSelection(null)
     }
 
     function deleteUserBird(id){
@@ -33,7 +33,7 @@ function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
                 </div>
     })
 
-    const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection.name || '') )
+    const filteredPosts = user.posts?.filter( p => p.bird_info.name.includes(sideBarSelection?.name || '') )
 
     const sortedPosts = filteredPosts?.sort((a,b) => b.id - a.id )
    
@@ -54,7 +54,7 @@ function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
                 {renderUserBirdBtns}
             </div>
             <div id='myPosts'>
-                { sideBarSelection.id ? (
+                { sideBarSelection ? (
                     <div id='infoBox'>
                         <h2>{sideBarSelection.name}</h2>
                         <p>{sideBarSelection.description}</p>

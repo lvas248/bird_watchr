@@ -37,7 +37,6 @@ function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarS
         <div id='cardContainer'>
 
             <Card className='card'  body>
-
                 <CardSubtitle className='date' tag='p'>{post.date}</CardSubtitle>
                 
                 { post.image_url ? <CardImg alt='bird' src={post.image_url}></CardImg> : null }
@@ -48,24 +47,20 @@ function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarS
                         ):(
                         <>
                             <CardTitle className='birdName' tag='h5'>{post.bird_info.name}</CardTitle>
+                            
                             <CardSubtitle className='date' tag='p'> {post.location}</CardSubtitle>
+                            
                             <Card id='textBox'>
                                 <CardText>Notes: {post.caption}</CardText>
                             </Card>
+                            
                             <Button onClick={clickEditBtn}>Edit</Button>
+                            
                             <Button onClick={deletePost}>Delete</Button>
                         </>
                     )}
-
-
                 </CardBody>
-                        
-
-
-            
-            </Card>  
-                  
-           
+            </Card> 
         </div>
     )
 }

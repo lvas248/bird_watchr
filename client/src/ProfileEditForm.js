@@ -1,13 +1,14 @@
 import { Input, Button } from 'reactstrap'
 import React, { useState } from 'react'
+import { UserContext } from './App'
+import { useContext } from 'react'
 
-function ProfileEditForm({user, setUser, clickEdit}){
+function ProfileEditForm({clickEdit}){
 
+    const [ user, setUser ] = useContext(UserContext)
 
     const [ inputText, setInputText ] = useState(user.username)
     const [ errors, setErrors ] = useState([])
-
-
 
     const renderErrors = errors.map( e => {
         return <p key={e} className='error'>{e}</p>

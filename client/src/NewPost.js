@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function NewPost({birds, createUniqueUserBirdsFromCurrentPosts,updateBirdsList}){
+function NewPost({birds, createUniqueUserBirdsFromCurrentPosts, updateBirdsList}){
 
     const [ user, setUser ] = useContext(UserContext)
     const history = useHistory()
@@ -20,7 +20,6 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts,updateBirdsList})
         }
     })
     
-
     const [ errors, setErrors ] = useState([])
 
     const [ select, setSelect ] = useState(true)
@@ -91,7 +90,6 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts,updateBirdsList})
     }
 
 
- 
     const renderErrors = errors?.map( error => {
         return <p key={error} className='error'>{error}</p>
     })
@@ -173,8 +171,7 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts,updateBirdsList})
                         <Button>Submit</Button>
                         
                     </Form>                
-   
-                {errors ? renderErrors : null}
+                { renderErrors }
             </Card>
         </div>
 

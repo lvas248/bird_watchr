@@ -24,7 +24,7 @@ function MyStuff(){
         .then( res => {
             if(res.ok){
                 res.json().then(data => {
-                    setUser({})
+                    setUser(null)
                     history.push('/')
                 })}})
     }
@@ -34,7 +34,7 @@ function MyStuff(){
             <CardBody id='profilePanel'>
 
                 { editClick ? (
-                    <ProfileEditForm clickEdit={clickEdit} user={user} setUser={setUser} />
+                    <ProfileEditForm clickEdit={clickEdit} />
                 ):(   
                     <>
                         <div id='usernamePanel'>
