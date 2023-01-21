@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 import { Form, Button, Input, Label, Card, CardBody } from 'reactstrap'
+import { UserContext } from './App'
 
-function Login({updateUser}){
+function Login(){
+
+    const [ ,setUser ] = useContext(UserContext)
 
     const obj = { username: '', password: ''}
 
     const [ loginObj, setLoginObj ] = useState(obj)
-    const [ errors, setErrors ] = useState()
+    const [ error, setError ] = useState()
 
     const history = useHistory()
 
@@ -29,11 +32,11 @@ function Login({updateUser}){
         .then(res => {
             if(res.ok){
                 res.json().then(data => {
-                    updateUser(data)        
-                    history.push('/')
+                    setUser(data)        
+                    history.push('/my-posts')
                 })
             }else{
-                res.json().then(errorData => setErrors(errorData.error))
+                res.json().then(errorData => setError(errorData.error))
             }
         })
 
@@ -64,7 +67,7 @@ function Login({updateUser}){
                 
                 </Form>
 
-                {errors ? <p className='error'>{errors}</p> : null}
+                {error ? <p className='error'>{error}</p> : null}
 
                 <div id='toSignup'>
                     <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>

@@ -33,11 +33,6 @@ function App() {
     })
   },[])
       
-
-  function updateUser(userObj){
-    setUser(userObj)
-  }
-
   function createUniqueBirdsArray(birdsArray){
     //takes an array of birds with duplicates and returns a unique array, alphebatized
       //create a unique array of birds using Map dataset
@@ -69,11 +64,6 @@ function App() {
 
   }
 
-
-
-
-
-  
   return (
     <UserContext.Provider value={ [user, setUser] }>
     <div className="App">
@@ -84,42 +74,47 @@ function App() {
 
         <Switch>
 
-          <Route exact path='/'>
+          <Route exact path='/my-posts'>
 
-          {user ? (
             <MyFeed 
               birds={birds} 
-              createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}/>
-          ):(
-            <Login updateUser={updateUser} />)}
+              createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}
+            />
+
           </Route>
           
-
-
 
           <Route path='/new-post'>
 
-              {user ? (
               <NewPost 
                 birds={birds}
                 createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}
-                updateBirdsList={updateBirdsList} />
-              ):(<Login updateUser={updateUser}/>)}
+                updateBirdsList={updateBirdsList} 
+              />
+         
           </Route>
+
 
           <Route path='/my-stuff'>
 
-            {user ? (
-                  <MyStuff user={user} />
-                ):(<Login updateUser={updateUser}/>)}
-  
+              <MyStuff  />
+
           </Route> 
+
 
           <Route path='/signup'>
 
-            <Signup updateUser={updateUser}/>          
+            <Signup />      
+
           </Route>          
           
+
+          <Route path='/'>
+
+            <Login />      
+
+          </Route> 
+
 
         </Switch>
       </div>

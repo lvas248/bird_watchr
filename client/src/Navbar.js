@@ -30,7 +30,7 @@ function Navbar(){
                 <NavItem>
 
                     <NavLink 
-                        exact to="/" className='navBtn'> 
+                        to={ user ? '/my-posts' : '/'} className='navBtn'> 
                         <strong>My Posts</strong>
                     </NavLink>
 
@@ -40,7 +40,7 @@ function Navbar(){
                 <NavItem>
 
                     <NavLink 
-                        to="/new-post"  className='navBtn'>
+                        to={ user ? "/new-post" : '/'}  className='navBtn'>
                         <strong>New Post</strong>
                     </NavLink>
 
@@ -50,7 +50,7 @@ function Navbar(){
                 <NavItem>
 
                     <NavLink 
-                        to="/my-stuff/posts"  className='navBtn'>
+                        to={ user ? "/my-stuff" : '/'}  className='navBtn'>
                        <strong>My Stuff</strong>
                     </NavLink>
 

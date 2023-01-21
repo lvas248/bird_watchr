@@ -51,7 +51,7 @@ function EditForm({post, birds, clickEditBtn, user, setUser, createUniqueUserBir
         return <option key={b.id} value={b.id}>{b.name}</option>
     })
 
-    const renderErrors = errors.map( e => {
+    const renderErrors = errors?.map( e => {
         return <p className='error' key={e}>{e}</p>
     })
 
@@ -97,7 +97,7 @@ function EditForm({post, birds, clickEditBtn, user, setUser, createUniqueUserBir
                             Cancel
                         </Button>
 
-                        { errors.length > 0 ? renderErrors : null }
+                        { renderErrors }
 
                     </FormGroup>
                 </Form>

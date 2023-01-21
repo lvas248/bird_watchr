@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { NavLink, useHistory } from 'react-router-dom'
 import { Form, Button, Input, Label } from 'reactstrap'
+import { UserContext } from './App'
 
+function Signup(){
 
-function Signup({updateUser}){
+    const [ , setUser ] = useContext(UserContext)
 
     const defaultObj = { username: '', password: '', password_confirmation: ''}
 
@@ -30,9 +32,9 @@ function Signup({updateUser}){
         .then(res => {
             if(res.ok){
                 res.json().then(data =>{
-                    updateUser(data)
+                    setUser(data)
                     setSignupObj(defaultObj)
-                    history.push('/')
+                    history.push('/new-post')
                     })
             }else{
                 res.json().then(data => {
@@ -44,7 +46,7 @@ function Signup({updateUser}){
 
     }
 
-    const renderErrors = errors.map( e => {
+    const renderErrors = errors?.map( e => {
         return <p key={e} className='error'>{e}</p>
     })
 
@@ -66,7 +68,8 @@ function Signup({updateUser}){
 
             </Form>
 
-            { errors.length > 0 ? renderErrors : null}
+            { renderErrors }
+            
             <NavLink to='/'>Back to Login</NavLink>
 
 

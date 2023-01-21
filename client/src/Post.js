@@ -9,11 +9,11 @@ function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarS
 
     const [ user,setUser ] = useContext(UserContext)
 
-    const [ editClick, SetEditClick ] = useState(false)
+    const [ editClick, setEditClick ] = useState(false)
 
 
     function clickEditBtn(){
-        SetEditClick(!editClick)
+        setEditClick(!editClick)
     }
 
     function deletePost(){

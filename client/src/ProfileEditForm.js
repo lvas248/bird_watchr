@@ -10,7 +10,7 @@ function ProfileEditForm({clickEdit}){
     const [ inputText, setInputText ] = useState(user.username)
     const [ errors, setErrors ] = useState([])
 
-    const renderErrors = errors.map( e => {
+    const renderErrors = errors?.map( e => {
         return <p key={e} className='error'>{e}</p>
     })
 
@@ -44,7 +44,7 @@ function ProfileEditForm({clickEdit}){
             <Input value={inputText} onChange={e=> setInputText(e.target.value)}/>
             <Button color='success'>Submit</Button>
             <Button onClick={clickEdit}color='warning'>Cancel</Button>
-            { errors.length > 0 ? renderErrors : null }
+            { renderErrors }
         </form>
     )
 }
