@@ -29,7 +29,7 @@ before_action :authorize
 
     def destroy_bird_posts
         user = get_user
-        user.posts.where("bird_id = #{params[:id]}").destroy_all
+        user.posts.destroy_by("bird_id = #{params[:id]}")
         head :no_content
     end
 
