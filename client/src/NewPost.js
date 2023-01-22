@@ -77,7 +77,7 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts, updateBirdsList}
                     //update global user
                     setUser(userCopy)
                     
-                    history.push('/')
+                    history.push('/my-posts')
                 }
                 )
             }else{

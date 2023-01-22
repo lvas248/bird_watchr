@@ -24,6 +24,7 @@ My Stuff: This component allows the user to edit/change their username and delet
 ![Alt Text](media/mystuff.gif)
 
 
+Video Walkthrough: https://youtu.be/UCK5X_JzYVc
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
