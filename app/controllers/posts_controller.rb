@@ -10,27 +10,27 @@ before_action :authorize
     def create
         user = get_user   
         post = user.posts.create!(post_params)
-        render json: post, status: :created
+        render json: user, status: :created
     end
 
     def update
         user = get_user
         post = user.posts.find(params[:id])
         post.update!(post_params)
-        render json: post, status: :ok
+        render json: user, status: :ok
     end
 
     def destroy
         user = get_user
         post = user.posts.find(params[:id])
         post.destroy
-        render json: post, status: :ok
+        render json: user, status: :ok
     end
 
     def destroy_bird_posts
         user = get_user
         user.posts.destroy_by("bird_id = #{params[:id]}")
-        head :no_content
+        render json: user, status: :ok
     end
 
     private

@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function NewPost({birds, createUniqueUserBirdsFromCurrentPosts, updateBirdsList}){
+function NewPost({birds, updateBirdsList}){
 
-    const [ user, setUser ] = useContext(UserContext)
+    const [ , setUser ] = useContext(UserContext)
     const history = useHistory()
 
     const [ postObj, setPostObj ] = useState({
@@ -68,14 +68,15 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts, updateBirdsList}
             if(res.ok){
                 res.json().then(data => {
                     
-                    //create copy of user and add new post
-                    let userCopy = {...user, posts: [data, ...user.posts]}
-                    //if user.birds doesn't already contain the new post's bird, add bird to user.
-                    userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
-                    //If user created new bird, add to birds list
-                    updateBirdsList(data.bird_info)
-                    //update global user
-                    setUser(userCopy)
+                    // //create copy of user and add new post
+                    // let userCopy = {...user, posts: [data, ...user.posts]}
+                    // //if user.birds doesn't already contain the new post's bird, add bird to user.
+                    // userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
+                    // //If user created new bird, add to birds list
+                    // updateBirdsList(data.bird_info)
+                    // //update global user
+                    updateBirdsList(data.birds)
+                    setUser(data)
                     
                     history.push('/my-posts')
                 }
@@ -95,7 +96,7 @@ function NewPost({birds, createUniqueUserBirdsFromCurrentPosts, updateBirdsList}
     })
 
     const renderOptions = birds.map( bird =>{
-        return <option key={bird.name} value={bird.id}>{bird.name}</option>
+        return <option key={bird.id} value={bird.id}>{bird.name}</option>
     })
 
     return (

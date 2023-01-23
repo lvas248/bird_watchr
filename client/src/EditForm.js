@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import { useContext } from 'react'
+import { UserContext } from './App'
 import { Label, Input, Button, Form, FormGroup } from 'reactstrap'
 
-function EditForm({post, birds, clickEditBtn, user, setUser, createUniqueUserBirdsFromCurrentPosts}){
+function EditForm({post, birds, clickEditBtn, updateBirdsList}){
 
 
+    const [ , setUser ] = useContext(UserContext)
     const [ editObj, setEditObj ] = useState({
             bird_id: post.bird_info.id,
             location: post.location,
@@ -30,14 +33,14 @@ function EditForm({post, birds, clickEditBtn, user, setUser, createUniqueUserBir
         })
         .then(res => {
             if(res.ok){
-                res.json().then(editedPost => {
+                res.json().then(data => {
                     //create copy of global user obj, replace old post with updated post
-                    let userCopy = {...user, posts: user.posts.map( p => {
-                        if(p.id === editedPost.id) return editedPost
-                        else return p
-                    })}
-                    userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
-                    setUser(userCopy)
+                    // let userCopy = {...user, posts: user.posts.map( p => {
+                    //     if(p.id === editedPost.id) return editedPost
+                    //     else return p
+                    // })}
+                    // userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
+                    setUser(data)
                     clickEditBtn()
                 })
             }else{

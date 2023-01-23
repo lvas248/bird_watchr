@@ -47,21 +47,10 @@ function App() {
   return updatedBirds
   }
 
-  function createUniqueUserBirdsFromCurrentPosts(updatedUserObj){
-    //Takes in the userObj, grabs all of the bird objs used in user.posts, creates unique array of bird objs and sets as user.birds
-      //Grab birdObjs from user.posts
-    const birdsArray = updatedUserObj.posts.map( p => p.bird_info)
-      //make it unique
-    const uniqueBirds = createUniqueBirdsArray(birdsArray)
-      //update userCopy.birds with unique birds list, return newly updated userObj
-    return {...updatedUserObj, birds: uniqueBirds}
 
-  }
-
-  function updateBirdsList(newBirdObj){
-    const birdsList = [...birds, newBirdObj]
+  function updateBirdsList(userBirds){
+    const birdsList = birds.concat(userBirds)
     setBirds(createUniqueBirdsArray(birdsList))
-
   }
 
   return (
@@ -78,7 +67,6 @@ function App() {
 
             <MyFeed 
               birds={birds} 
-              createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}
             />
 
           </Route>
@@ -88,7 +76,6 @@ function App() {
 
               <NewPost 
                 birds={birds}
-                createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}
                 updateBirdsList={updateBirdsList} 
               />
          

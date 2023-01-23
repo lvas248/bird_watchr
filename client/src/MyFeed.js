@@ -5,7 +5,7 @@ import { useContext } from 'react'
 import Post from './Post'
 
 
-function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
+function MyFeed({birds}){
 
     const [ user, setUser ] = useContext(UserContext)
     const [ sideBarSelection, setSideBarSelection ] = useState(null)
@@ -19,11 +19,15 @@ function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
         fetch(`/bird-posts/${id}`,{
             method: 'DELETE'
         })
-        // In global user obj, delete all posts with specific bird, delete the bird from user.birds
-        let userCopy = {...user, birds: user.birds.filter( b => b.id !== id)}
-        userCopy = {...userCopy, posts: userCopy.posts.filter( p => p.bird_info.id !== id) }
-        setUser(userCopy)
-        setSideBarSelection({})
+        .then( res => res.json())
+        .then( data => {
+            setUser(data)
+            setSideBarSelection({})
+        })
+        // // In global user obj, delete all posts with specific bird, delete the bird from user.birds
+        // let userCopy = {...user, birds: user.birds.filter( b => b.id !== id)}
+        // userCopy = {...userCopy, posts: userCopy.posts.filter( p => p.bird_info.id !== id) }
+
     }
 
     const renderUserBirdBtns = user?.birds.map( b => {
@@ -41,7 +45,6 @@ function MyFeed({birds, createUniqueUserBirdsFromCurrentPosts}){
         return <Post 
                 key={p.id} post={p} 
                 birds={birds} 
-                createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts} 
                 clearSideBarSelection={clearSideBarSelection}/>
     })
 

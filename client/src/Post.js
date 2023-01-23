@@ -5,7 +5,7 @@ import EditForm from './EditForm'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarSelection}){
+function Post({post, birds, clearSideBarSelection}){
 
     const [ user,setUser ] = useContext(UserContext)
 
@@ -22,12 +22,13 @@ function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarS
         })
         .then(res => res.json())
         .then(data => {
-            //Create copy of user and remove the deleted post from it
-            let userCopy = {...user, posts: user.posts.filter( p => p.id !== data.id)}
-            //update userCopy.birds list
-            userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
-            //update global user
-            setUser(userCopy)
+            // console.log(data)
+            // //Create copy of user and remove the deleted post from it
+            // let userCopy = {...user, posts: user.posts.filter( p => p.id !== data.id)}
+            // //update userCopy.birds list
+            // userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
+            // //update global user
+            setUser(data)
             clearSideBarSelection()
         })
     }
@@ -43,7 +44,7 @@ function Post({post, birds, createUniqueUserBirdsFromCurrentPosts, clearSideBarS
                  
                 <CardBody>
                     { editClick ? (
-                            <EditForm post={post} clickEditBtn={clickEditBtn} birds={birds} user={user} setUser={setUser} createUniqueUserBirdsFromCurrentPosts={createUniqueUserBirdsFromCurrentPosts}/>
+                            <EditForm post={post} clickEditBtn={clickEditBtn} birds={birds} user={user} setUser={setUser} />
                         ):(
                         <>
                             <CardTitle className='birdName' tag='h5'>{post.bird_info.name}</CardTitle>
