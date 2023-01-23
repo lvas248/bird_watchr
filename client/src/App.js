@@ -47,14 +47,14 @@ function App() {
   return updatedBirds
   }
 
-  function createUniqueUserBirdsFromCurrentPosts(userObj){
+  function createUniqueUserBirdsFromCurrentPosts(updatedUserObj){
     //Takes in the userObj, grabs all of the bird objs used in user.posts, creates unique array of bird objs and sets as user.birds
       //Grab birdObjs from user.posts
-    const birdsArray = userObj.posts.map( p => p.bird_info)
+    const birdsArray = updatedUserObj.posts.map( p => p.bird_info)
       //make it unique
     const uniqueBirds = createUniqueBirdsArray(birdsArray)
       //update userCopy.birds with unique birds list, return newly updated userObj
-    return {...userObj, birds: uniqueBirds}
+    return {...updatedUserObj, birds: uniqueBirds}
 
   }
 
