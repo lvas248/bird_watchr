@@ -47,11 +47,14 @@ function App() {
   return updatedBirds
   }
 
-
-  function updateBirdsList(userBirds){
-    const birdsList = birds.concat(userBirds)
-    setBirds(createUniqueBirdsArray(birdsList))
+  function updateBirds(newBirdArray){
+    setBirds(newBirdArray)
   }
+
+  // function updateBirdsList(userBirds){
+  //   const birdsList = birds.concat(userBirds)
+  //   setBirds(createUniqueBirdsArray(birdsList))
+  // }
 
   return (
     <UserContext.Provider value={ [user, setUser] }>
@@ -76,7 +79,7 @@ function App() {
 
               <NewPost 
                 birds={birds}
-                updateBirdsList={updateBirdsList} 
+                updateBirds={updateBirds} 
               />
          
           </Route>

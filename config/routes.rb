@@ -20,6 +20,12 @@ Rails.application.routes.draw do
 
   delete '/logout', to: 'sessions#destroy'
 
+  get '/location/:place', to: 'posts#location'
+
+  # example  /location/tarrytown,_ny
+  # render all current users posts that have that location
 
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
+
+
 end

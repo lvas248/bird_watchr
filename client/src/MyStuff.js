@@ -23,10 +23,9 @@ function MyStuff(){
         })
         .then( res => {
             if(res.ok){
-                res.json().then(data => {
-                    setUser(null)
-                    history.push('/')
-                })}})
+                setUser(null)
+                history.push('/')
+            }})
     }
     
     return (

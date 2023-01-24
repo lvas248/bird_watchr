@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom'
 import { UserContext } from './App'
 import { useContext } from 'react'
 
-function NewPost({birds, updateBirdsList}){
+function NewPost({birds, updateBirds}){
 
-    const [ , setUser ] = useContext(UserContext)
+    const [ user, setUser ] = useContext(UserContext)
     const history = useHistory()
 
     const [ postObj, setPostObj ] = useState({
@@ -68,25 +68,39 @@ function NewPost({birds, updateBirdsList}){
             if(res.ok){
                 res.json().then(data => {
                     
-                    // //create copy of user and add new post
-                    // let userCopy = {...user, posts: [data, ...user.posts]}
-                    // //if user.birds doesn't already contain the new post's bird, add bird to user.
-                    // userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
-                    // //If user created new bird, add to birds list
-                    // updateBirdsList(data.bird_info)
-                    // //update global user
-                    updateBirdsList(data.birds)
-                    setUser(data)
-                    
+                    //add new post to user obj
+                    let userCopy = {...user, posts: [data,...user.posts]}
+
+                    // if new post contains a bird that doesn't already exist in user.birds, update user.birds
+                    if(!user.birds.some( birdObj => birdObj.id === data.bird_info.id)){
+                        const updatedUserBirds = [...user.birds, data.bird_info].sort((a,b) => {
+                            if(a.name < b.name) return -1
+                            else if(a.name > b.name) return 1
+                            else return 0
+                        } )
+                        userCopy = {...userCopy, birds: updatedUserBirds}
+                    }
+
+                    setUser(userCopy)
+
+    
+                    // if bird isn't already included in the birds state, add new post.bird into birds state
+                    if( !birds.some( b => b.id === data.bird_info.id) ){
+                        const updatedBirds = [...birds, data.bird_info].sort( (a,b)=>{
+                            if(a.name < b.name) return -1
+                            else if( a.name > b.name) return 1
+                            else return 0
+                        })
+                        updateBirds(updatedBirds)
+                    }
+
                     history.push('/my-posts')
-                }
-                )
+                })
             }else{
                 res.json().then(errorData => setErrors(errorData.errors))
             }
         }
         )
-
         resetPostObj()
     }
 

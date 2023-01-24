@@ -22,7 +22,7 @@ class UsersController < ApplicationController
         user = User.find(session[:user_id])
         session.delete :user_id
         user.destroy
-        render json: user, status: :ok
+        head :no_content
     end
 
 

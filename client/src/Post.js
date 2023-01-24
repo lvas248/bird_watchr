@@ -20,17 +20,18 @@ function Post({post, birds, clearSideBarSelection}){
         fetch(`/posts/${post.id}`, {
             method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(data => {
-            // console.log(data)
-            // //Create copy of user and remove the deleted post from it
-            // let userCopy = {...user, posts: user.posts.filter( p => p.id !== data.id)}
-            // //update userCopy.birds list
-            // userCopy = createUniqueUserBirdsFromCurrentPosts(userCopy)
-            // //update global user
-            setUser(data)
-            clearSideBarSelection()
+        .then(res => {
+            if(res.ok){
+                let userCopy = {...user, posts: user.posts.filter(p => p.id !== post.id )}
+                //if userCopy.posts doesn't have a post including the deletedPost.bird, remove bird user.birds
+                if(!userCopy.posts.some( p => p.bird_info.id === post.bird_info.id)){
+                    userCopy = {...userCopy, birds: userCopy.birds.filter( b =>  b.id !== post.bird_info.id)}
+                }
+                setUser(userCopy)
+                clearSideBarSelection()
+            }
         })
+
     }
 
 

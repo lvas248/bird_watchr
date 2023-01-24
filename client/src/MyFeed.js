@@ -19,15 +19,17 @@ function MyFeed({birds}){
         fetch(`/bird-posts/${id}`,{
             method: 'DELETE'
         })
-        .then( res => res.json())
-        .then( data => {
-            setUser(data)
-            setSideBarSelection({})
+        .then( res => {
+            if(res.ok){
+                //create userCopy, remove bird from userCopy.birds
+                let userCopy = { ...user, birds: user.birds.filter( b => b.id !== id)}
+                //remove all posts that contain the deleted bird id
+                userCopy = {...userCopy, posts: userCopy.posts.filter( p => p.bird_info.id !== id)}
+                //set user state to userCopy
+                setUser(userCopy)
+            }
         })
-        // // In global user obj, delete all posts with specific bird, delete the bird from user.birds
-        // let userCopy = {...user, birds: user.birds.filter( b => b.id !== id)}
-        // userCopy = {...userCopy, posts: userCopy.posts.filter( p => p.bird_info.id !== id) }
-
+     
     }
 
     const renderUserBirdBtns = user?.birds.map( b => {
