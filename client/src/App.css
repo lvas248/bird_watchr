@@ -3,7 +3,6 @@
   align-content: inherit;
   display: grid;
   height: 100vh;
-  /* width: 100%; */
   padding: 1%;
   overflow: hidden;
   max-width: 725px;
@@ -53,6 +52,7 @@
   overflow: auto;
   /* background-color: black; */
 }
+
 
 #nav_container{
   padding: 2%;
@@ -254,6 +254,11 @@ a:link{
   gap: 2%;
   height: 88vh;
 }
+
+#create {
+  margin: auto;
+}
+
 
 #sideBar{
   flex-basis: 25%;

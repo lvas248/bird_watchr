@@ -38,10 +38,6 @@ function MyFeed({birds}){
                     <Button onClick={()=>deleteUserBird(b.id)}>x</Button>
                 </div>
     })
-
-    // const filteredPosts = user?.posts.filter( p => p.bird_info.name.includes(sideBarSelection?.name || '') )
-
-    // const sortedPosts = filteredPosts?.sort((a,b) => b.id - a.id )
    
     const renderPosts = user?.formatted_posts.map( p => {
         return <Post 
@@ -54,20 +50,31 @@ function MyFeed({birds}){
  
     return (
         <div id='myFeed'>
-            <div id='sideBar'>
-                <h3>My Birds</h3>
-                <Button key={0} onClick={clearSideBarSelection}>All</Button>
-                {renderUserBirdBtns}
-            </div>
-            <div id='myPosts'>
-                { sideBarSelection ? (
-                    <div id='infoBox'>
-                        <h2>{sideBarSelection.name}</h2>
-                        <p>{sideBarSelection.description}</p>
+
+            { user?.birds.length > 0 ? (
+                <>
+                    <div id='sideBar'>
+                        <h3>My Birds</h3>
+                        <Button key={0} onClick={clearSideBarSelection}>All</Button>
+                        {renderUserBirdBtns}
                     </div>
-                ) : null}
-                {renderPosts}
-            </div>
+
+                    <div id='myPosts'>
+                        { sideBarSelection ? (
+                            <div id='infoBox'>
+                                <h2>{sideBarSelection.name}</h2>
+                                <p>{sideBarSelection.description}</p>
+                            </div>
+                        ) : null}
+                        {renderPosts}
+                    </div>
+                </>
+
+
+            ): <h3 id='create'>Create a New Post</h3>
+            
+            }
+
         </div>
     )
 }
