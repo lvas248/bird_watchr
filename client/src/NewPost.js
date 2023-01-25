@@ -69,7 +69,7 @@ function NewPost({birds, updateBirds}){
                 res.json().then(data => {
                     
                     //add new post to user obj
-                    let userCopy = {...user, posts: [data,...user.posts]}
+                    let userCopy = {...user, formatted_posts: [data,...user.formatted_posts]}
 
                     // if new post contains a bird that doesn't already exist in user.birds, update user.birds
                     if(!user.birds.some( birdObj => birdObj.id === data.bird_info.id)){

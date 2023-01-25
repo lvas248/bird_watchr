@@ -35,17 +35,17 @@ function EditForm({post, birds, clickEditBtn}){
             if(res.ok){
                 res.json().then(data => {
                     //Find the original post that has been edited
-                    const oldPost = user.posts.find( p => p.id === data.id)
+                    const oldPost = user.formatted_posts.find( p => p.id === data.id)
                 
                     // create copy of user, replace original post with newly edited post
-                    let userCopy = {...user, posts: user.posts.map( p => {
+                    let userCopy = {...user, formatted_posts: user.formatted_posts.map( p => {
                         if(p.id === data.id) return data
                         else return p
                     })}
 
 
                     // If user.posts does not have a post that contains oldPost.bird, remove bird from user.birds
-                    if(!userCopy.posts.some( p => p.bird_info.id === oldPost.bird_info.id) ){
+                    if(!userCopy.formatted_posts.some( p => p.bird_info.id === oldPost.bird_info.id) ){
                         userCopy = {...userCopy, birds: userCopy.birds.filter( b => b.id !== oldPost.bird_info.id)}
                     }
 

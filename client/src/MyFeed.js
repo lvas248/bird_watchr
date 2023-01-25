@@ -24,7 +24,7 @@ function MyFeed({birds}){
                 //create userCopy, remove bird from userCopy.birds
                 let userCopy = { ...user, birds: user.birds.filter( b => b.id !== id)}
                 //remove all posts that contain the deleted bird id
-                userCopy = {...userCopy, posts: userCopy.posts.filter( p => p.bird_info.id !== id)}
+                userCopy = {...userCopy, formatted_posts: userCopy.formatted_posts.filter( p => p.bird_info.id !== id)}
                 //set user state to userCopy
                 setUser(userCopy)
             }
@@ -39,13 +39,14 @@ function MyFeed({birds}){
                 </div>
     })
 
-    const filteredPosts = user?.posts.filter( p => p.bird_info.name.includes(sideBarSelection?.name || '') )
+    // const filteredPosts = user?.posts.filter( p => p.bird_info.name.includes(sideBarSelection?.name || '') )
 
-    const sortedPosts = filteredPosts?.sort((a,b) => b.id - a.id )
+    // const sortedPosts = filteredPosts?.sort((a,b) => b.id - a.id )
    
-    const renderPosts = sortedPosts?.map( p => {
+    const renderPosts = user?.formatted_posts.map( p => {
         return <Post 
-                key={p.id} post={p} 
+                key={p.id} 
+                post={p} 
                 birds={birds} 
                 clearSideBarSelection={clearSideBarSelection}/>
     })

@@ -33,28 +33,11 @@ function App() {
     })
   },[])
       
-  function createUniqueBirdsArray(birdsArray){
-    //takes an array of birds with duplicates and returns a unique array, alphebatized
-      //create a unique array of birds using Map dataset
-    const birdMap = new Map(birdsArray.map( birdObj => [birdObj['id'], birdObj]))
-    let updatedBirds =  [...birdMap.values()]
-      //alphabetize array by bird name
-    updatedBirds = ([...birdMap.values()].sort( (a,b) => {
-      if(a.name < b.name) return -1
-      else if(a.name > b.name) return 1
-      else return 0
-    }))
-  return updatedBirds
-  }
 
   function updateBirds(newBirdArray){
     setBirds(newBirdArray)
   }
 
-  // function updateBirdsList(userBirds){
-  //   const birdsList = birds.concat(userBirds)
-  //   setBirds(createUniqueBirdsArray(birdsList))
-  // }
 
   return (
     <UserContext.Provider value={ [user, setUser] }>

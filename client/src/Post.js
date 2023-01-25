@@ -22,9 +22,9 @@ function Post({post, birds, clearSideBarSelection}){
         })
         .then(res => {
             if(res.ok){
-                let userCopy = {...user, posts: user.posts.filter(p => p.id !== post.id )}
+                let userCopy = {...user, formatted_posts: user.formatted_posts.filter(p => p.id !== post.id )}
                 //if userCopy.posts doesn't have a post including the deletedPost.bird, remove bird user.birds
-                if(!userCopy.posts.some( p => p.bird_info.id === post.bird_info.id)){
+                if(!userCopy.formatted_posts.some( p => p.bird_info.id === post.bird_info.id)){
                     userCopy = {...userCopy, birds: userCopy.birds.filter( b =>  b.id !== post.bird_info.id)}
                 }
                 setUser(userCopy)
