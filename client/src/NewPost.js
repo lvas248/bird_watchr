@@ -57,6 +57,7 @@ function NewPost({birds, updateBirds}){
 
     function submitNewPost(e){
         e.preventDefault()
+        console.log(postObj)
         fetch('/posts',{
             method: 'POST',
             headers:{
@@ -174,6 +175,7 @@ function NewPost({birds, updateBirds}){
                             <Label className='label'>Image  URL:</Label>
                             <Input 
                                 value={postObj.image_url} 
+                                type='file'
                                 onChange={e=>updatePostObj('image_url', e)}
                             />
                         </FormGroup>
