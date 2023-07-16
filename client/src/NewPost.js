@@ -12,8 +12,8 @@ function NewPost({birds, updateBirds}){
     const [ postObj, setPostObj ] = useState({
         location:'',
         caption: '',
-        image_url: '',
         bird_id: 0, 
+        image: null,
         bird_attributes: {
             name: '',
             description: ''            
@@ -55,15 +55,24 @@ function NewPost({birds, updateBirds}){
         setPostObj({...postObj, bird_attributes: copy})
     }
 
+    function handleImageSelect(e){
+        setPostObj({...postObj, image: e.target.files[0]})
+    }
+
+
     function submitNewPost(e){
         e.preventDefault()
-        console.log(postObj)
+        const formData = new FormData()
+        Object.keys(postObj).forEach( k => {
+            formData.append(k, postObj[k])
+        } )
+    
         fetch('/posts',{
             method: 'POST',
-            headers:{
-                'Content-Type':'application/json'
-            },
-            body: JSON.stringify({post: postObj})
+            // headers:{
+            //     'Content-Type':'application/json'
+            // },
+            body: formData
         })
         .then(res => {
             if(res.ok){
@@ -172,11 +181,13 @@ function NewPost({birds, updateBirds}){
                         </FormGroup>   
 
                         <FormGroup className='formGroup'>
-                            <Label className='label'>Image  URL:</Label>
+                            <Label className='label'>Image:</Label>
                             <Input 
-                                value={postObj.image_url} 
+                                id='imageInput'
+                                name='image'
                                 type='file'
-                                onChange={e=>updatePostObj('image_url', e)}
+                                // value={postObj.image}
+                                onChange={handleImageSelect}
                             />
                         </FormGroup>
 

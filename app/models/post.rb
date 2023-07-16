@@ -4,7 +4,9 @@ class Post < ApplicationRecord
   # default_scope { order(:id => :desc) }
 
   accepts_nested_attributes_for :bird
+
   before_create :upload_image
+
 
   validates :location, presence: true
   validates :caption, presence: true
@@ -20,8 +22,10 @@ class Post < ApplicationRecord
   private
 
   def upload_image
-
+    binding.pry
   end
+
+
 
 
 end

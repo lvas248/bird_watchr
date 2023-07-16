@@ -33,18 +33,10 @@ before_action :authorize
         head :no_content
     end
 
-
-
-
-
-
-
-
-
     private
 
     def post_params
-        params.require(:post).permit(:id, :location, :caption, :bird_id, :image_url, bird_attributes: [:name, :description])
+        params.permit(:id, :location, :caption, :bird_id, :image, bird_attributes: [:name, :description])
     end
 
     def authorize
