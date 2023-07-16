@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   has_one :image, dependent: :destroy
   # default_scope { order(:id => :desc) }
 
+  before_destroy :delete_image_from_cloud
+
   accepts_nested_attributes_for :bird
 
 
@@ -25,6 +27,10 @@ class Post < ApplicationRecord
   end
 
   private
+
+  def delete_image_from_cloud
+    Cloudinary::Uploader.destroy(self.image.public_id)
+  end
 
 
 
