@@ -1,11 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
   belongs_to :bird
+  has_one :image, dependent: :destroy
   # default_scope { order(:id => :desc) }
 
   accepts_nested_attributes_for :bird
-
-  before_create :upload_image
 
 
   validates :location, presence: true
@@ -19,11 +18,13 @@ class Post < ApplicationRecord
     end
   end
 
-  private
-
-  def upload_image
-    binding.pry
+  def create_and_upload_image(new_image)
+    result =  Cloudinary::Uploader.upload(new_image.tempfile.path, :transformation => 
+    {:width => 400, :height => 400, :crop=> :lfill})
+    self.create_image(url: result['url'], public_id: result['public_id'])
   end
+
+  private
 
 
 

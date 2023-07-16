@@ -16,6 +16,7 @@ function App() {
   const [ user, setUser ] = useState(null)
   const [ birds, setBirds ] = useState([])
 
+  console.log(user)
 
   useEffect(()=>{
     fetch('/birds')

@@ -10,6 +10,7 @@ before_action :authorize
     def create
         user = get_user   
         post = user.posts.create!(post_params)
+        post.create_and_upload_image(params[:image])
         render json: post, status: :created
     end
 
@@ -36,7 +37,7 @@ before_action :authorize
     private
 
     def post_params
-        params.permit(:id, :location, :caption, :bird_id, :image, bird_attributes: [:name, :description])
+        params.permit(:id, :location, :caption, :bird_id, :image_url, bird_attributes: [:name, :description])
     end
 
     def authorize
