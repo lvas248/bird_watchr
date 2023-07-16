@@ -13,12 +13,12 @@ function NewPost({birds, updateBirds}){
         location:'',
         caption: '',
         bird_id: 0, 
-        image: null,
         bird_attributes: {
             name: '',
             description: ''            
         }
     })
+    const [ imageFile, setImageFile ] = useState(null)
     
     const [ errors, setErrors ] = useState([])
 
@@ -56,22 +56,20 @@ function NewPost({birds, updateBirds}){
     }
 
     function handleImageSelect(e){
-        setPostObj({...postObj, image: e.target.files[0]})
+        setImageFile(e.target.files[0])
     }
 
 
     function submitNewPost(e){
         e.preventDefault()
         const formData = new FormData()
-        Object.keys(postObj).forEach( k => {
-            formData.append(k, postObj[k])
-        } )
-    
+        // Object.keys(postObj).forEach( k => {
+        //     formData.append(k, postObj[k])
+        // } )
+        formData.append( 'post', JSON.stringify(postObj))
+        formData.append( 'image', imageFile)
         fetch('/posts',{
             method: 'POST',
-            // headers:{
-            //     'Content-Type':'application/json'
-            // },
             body: formData
         })
         .then(res => {

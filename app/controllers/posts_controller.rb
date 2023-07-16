@@ -1,3 +1,5 @@
+require 'json'
+
 class PostsController < ApplicationController
 
 before_action :authorize
@@ -36,9 +38,20 @@ before_action :authorize
 
     private
 
+  
+
     def post_params
-        params.permit(:id, :location, :caption, :bird_id, :image_url, bird_attributes: [:name, :description])
+
+        def permit_attributes(obj, attributes)
+            obj.filter { |key,_| attributes.include?(key.to_sym)}
+        end
+
+        post = JSON.parse(params[:post])
+
+        permit_attributes(post, [:id, :location, :caption, :bird_id, :image_url, :bird_attributes])
     end
+
+    
 
     def authorize
         render json: { error: "Sign in to interact"}, status: :unauthorized unless

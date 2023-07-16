@@ -38,8 +38,10 @@ function MyFeed({birds}){
                     <Button onClick={()=>deleteUserBird(b.id)}>x</Button>
                 </div>
     })
+
+    const filteredPosts = sideBarSelection ? user?.formatted_posts.filter( p => p.bird_info.id === sideBarSelection.id ) : user?.formatted_posts
    
-    const renderPosts = user?.formatted_posts.map( p => {
+    const renderPosts = filteredPosts?.map( p => {
         return <Post 
                 key={p.id} 
                 post={p} 
