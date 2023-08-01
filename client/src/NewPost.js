@@ -63,9 +63,7 @@ function NewPost({birds, updateBirds}){
     function submitNewPost(e){
         e.preventDefault()
         const formData = new FormData()
-        // Object.keys(postObj).forEach( k => {
-        //     formData.append(k, postObj[k])
-        // } )
+  
         formData.append( 'post', JSON.stringify(postObj))
         formData.append( 'image', imageFile)
         fetch('/posts',{
