@@ -304,3 +304,12 @@ a:link{
   flex-basis: 80%;
   margin-right: 2px;
 }
+
+.demo{
+  font-size: 12px;
+}
+
+.cred{
+  display: flex;
+  gap: 10px;
+}

@@ -7,7 +7,7 @@ function Login(){
 
     const [ ,setUser ] = useContext(UserContext)
 
-    const obj = { username: '', password: ''}
+    const obj = { username: 'demo', password: 'password'}
 
     const [ loginObj, setLoginObj ] = useState(obj)
     const [ error, setError ] = useState()
@@ -45,6 +45,7 @@ function Login(){
     return (
         <Card id='form'>
             <CardBody>
+                
                 <h1>Login</h1>
                 <Form onSubmit={submitLogin}>
 
@@ -73,7 +74,6 @@ function Login(){
                     <p>New to BirdWatchr? <NavLink to='/signup'>Signup</NavLink></p>
                 </div>                
             </CardBody>
-
 
         </Card>
     )
