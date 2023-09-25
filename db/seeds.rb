@@ -1,5 +1,5 @@
 
-User.create( username: 'Luis', password: '123')
+User.create( username: 'demo', password: 'password')
 
 user = User.first
 
