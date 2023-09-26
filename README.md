@@ -4,7 +4,7 @@
 Bird Watcher is a diary app where you can post pics and jot down notes about the interesting birds you come across.
 
 Video Walkthrough: https://youtu.be/UCK5X_JzYVc
-Demo: https://bird-watcher.onrender.com
+Demo: [https://bird-watcher-20dr.onrender.com](https://bird-watcher-20dr.onrender.com)
 
 ## Description
 When the page initially loads, the user is directed to the Log in or Signup component where they will have to login or signup for an account.  They can do so by clicking on the 'Login' button in the nav bar, and then either entering in the username and password, or selecting the signup button to create a new account.  
